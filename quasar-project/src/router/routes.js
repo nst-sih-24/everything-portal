@@ -1,7 +1,8 @@
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    // component: () => import('layouts/MainLayout.vue'),
+    component: () => import('layouts/DeeLayout.vue'),
     children: [
       { path: '/aboutus', component: () => import('pages/AboutUs.vue') },
       { path: '/feedback', component: () => import('pages/Feedback.vue') },
@@ -9,7 +10,7 @@ const routes = [
       { path: '/login', component: () => import('pages/LoginPage.vue') },
       { path: '/homepage', component: () => import('pages/HomePage.vue') },
       { path: '/plannerhomepage', component: () => import('pages/planner_Home.vue')},
-      { path: 'dee', component: () => import('pages/DeePage.vue') },
+      { path: '/dee', component: () => import('pages/DeePage.vue') },
     ]
   },
 

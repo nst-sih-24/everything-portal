@@ -96,7 +96,7 @@ export default {
     loadMapScript() {
       const script = document.createElement("script");
       script.src =
-        "https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap";
+        "https://maps.googleapis.com/maps/api/js?key=AIzaSyCX7YZQFXhOtlyC-El4uG9baq4qSY68MZg&callback=initMap";
       script.async = true;
       script.defer = true;
       document.head.appendChild(script);
