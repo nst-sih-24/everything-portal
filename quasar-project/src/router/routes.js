@@ -10,7 +10,9 @@ const routes = [
       { path: '/homepage', component: () => import('pages/HomePage.vue') },
       { path: '/plannerhomepage', component: () => import('pages/planner_Home.vue')},
       { path: 'dee', component: () => import('pages/DeePage.vue') },
-      { path: '/busticketbookingpage', component: () => import('pages/BusTicketBooking_3rdPage.vue')},
+      { path: '/Paymentpage', component: () => import('pages/PaymentPage.vue')},
+      { path: '/paymentgateway', component: () => import ('pages/PaymentGateway.vue')},
+
     ]
   },
 
