@@ -5,7 +5,7 @@ const routes = [
     component: () => import('layouts/DeeLayout.vue'),
     children: [
       { path: '/aboutus', component: () => import('pages/AboutUs.vue') },
-      { path: '/feedback', component: () => import('src/pages/FeedBack.vue') },
+      { path: '/feedback', component: () => import('src/pages/FeedBake.vue') },
       { path: '/help&support', component: () => import('pages/HelpAndSupport.vue') },
       { path: '/login', component: () => import('pages/LoginPage.vue') },
       { path: '/homepage', component: () => import('pages/HomePage.vue') },
