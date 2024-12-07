@@ -5,6 +5,7 @@
       src="~assets/quasar-logo-vertical.svg"
       style="width: 200px; height: 200px"
     >
+    <h1>This is Abbout Us</h1>
   </q-page>
 </template>
 

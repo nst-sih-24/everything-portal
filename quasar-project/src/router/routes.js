@@ -3,7 +3,12 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') }
+      { path: '/aboutus', component: () => import('pages/AboutUs.vue') },
+      { path: '/feedback', component: () => import('pages/Feedback.vue') },
+      { path: '/help&support', component: () => import('pages/HelpAndSupport.vue') },
+      { path: '/login', component: () => import('pages/LoginPage.vue') },
+      { path: '/homepage', component: () => import('pages/HomePage.vue') },
+      { path: '/plannerhomepage', component: () => import('pages/Planner_Home.vue')},
     ]
   },
 

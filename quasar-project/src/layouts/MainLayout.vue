@@ -12,10 +12,10 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          NavSmart
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>NavSmart v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
@@ -40,8 +40,14 @@
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <router-view/>
     </q-page-container>
+
+    <q-footer>
+    <q-toolbar-title  class="copyright">
+      <small> &copy; ByteKnigtz</small>
+    </q-toolbar-title>
+  </q-footer>
   </q-layout>
 </template>
 
@@ -55,10 +61,9 @@ defineOptions({
 
 const linksList = [
   {
-    title: 'Docs',
+    title: 'Homepage',
     caption: 'quasar.dev',
     icon: 'school',
-    link: 'https://quasar.dev'
   },
   {
     title: 'Github',
@@ -104,3 +109,9 @@ function toggleLeftDrawer () {
   leftDrawerOpen.value = !leftDrawerOpen.value
 }
 </script>
+
+<style>
+.copyright{
+  text-align: center;
+}
+</style>
