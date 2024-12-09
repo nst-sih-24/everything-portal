@@ -2,30 +2,34 @@
   <q-layout view="lHh Lpr lFf">
     <!-- Main Content Area -->
     <q-page-container class="bg-light-grey">
-        <!-- Main Content Section -->
-        <div class="q-pa-md" style="flex-grow: 1;">
-
-          <!-- Crew Details Table Section -->
-          <div class="q-card bg-white shadow-2 rounded-xl q-pa-md">
-            <h3 class="q-mb-md text-h6">Crew Details</h3>
-            <q-table
-              :rows="crewDetails"
-              :columns="columns"
-              row-key="id"
-              :rows-per-page-options="[5, 10, 15]"
-              class="q-mt-md"
-              :loading="false"
-            >
-              <template v-slot:body-cell-status="props">
-                <q-td :props="props">
-                  <span :class="{'text-green': props.row.status === 'Assigned', 'text-red': props.row.status === 'Not Assigned'}">
-                    {{ props.row.status }}
-                  </span>
-                </q-td>
-              </template>
-            </q-table>
-          </div>
+      <!-- Main Content Section -->
+      <div class="q-pa-md" style="flex-grow: 1">
+        <!-- Crew Details Table Section -->
+        <div class="q-card bg-white shadow-2 rounded-xl q-pa-md">
+          <h3 class="q-mb-md text-h6">Crew Details</h3>
+          <q-table
+            :rows="crewDetails"
+            :columns="columns"
+            row-key="id"
+            :rows-per-page-options="[5, 10, 15]"
+            class="q-mt-md"
+            :loading="false"
+          >
+            <template #body-cell-status="props">
+              <q-td :props="props">
+                <span
+                  :class="{
+                    'text-green': props.row.status === 'Assigned',
+                    'text-red': props.row.status === 'Not Assigned',
+                  }"
+                >
+                  {{ props.row.status }}
+                </span>
+              </q-td>
+            </template>
+          </q-table>
         </div>
+      </div>
     </q-page-container>
 
     <!-- Footer Section -->
@@ -40,50 +44,105 @@
 
 <script>
 export default {
-  name: 'CrewDetails',
+  name: "CrewDetails",
   data() {
     return {
       crewDetails: [
         {
-          name: 'Sumit',
-          id: '12345',
-          routeNo: '101',
-          vehicleNo: 'XYZ1234',
-          signIn: '08:00 AM',
-          signOff: '05:00 PM',
-          source: 'YOUR SPACE',
-          destination: 'NST',
-          status: 'Assigned',
-          crewType: 'Driver',
-          hoursWorked: '9 hours',
+          name: "Sumit",
+          id: "12345",
+          routeNo: "101",
+          vehicleNo: "XYZ1234",
+          signIn: "08:00 AM",
+          signOff: "05:00 PM",
+          source: "YOUR SPACE",
+          destination: "NST",
+          status: "Assigned",
+          crewType: "Driver",
+          hoursWorked: "9 hours",
         },
         {
-          name: 'Oats',
-          id: '12346',
-          routeNo: 'B202',
-          vehicleNo: 'ABC5678',
-          signIn: '09:00 AM',
-          signOff: '06:00 PM',
-          source: 'ULC',
-          destination: 'NST',
-          status: 'Not Assigned',
-          crewType: 'Conductor',
-          hoursWorked: '---',
+          name: "Oats",
+          id: "12346",
+          routeNo: "B202",
+          vehicleNo: "ABC5678",
+          signIn: "09:00 AM",
+          signOff: "06:00 PM",
+          source: "ULC",
+          destination: "NST",
+          status: "Not Assigned",
+          crewType: "Conductor",
+          hoursWorked: "---",
         },
         // Add more crew members as needed
       ],
       columns: [
-        { name: 'name', label: 'Employee Name', align: 'left', field: row => row.name },
-        { name: 'id', label: 'Employee ID', align: 'left', field: row => row.id },
-        { name: 'routeNo', label: 'Bus Route No.', align: 'left', field: row => row.routeNo },
-        { name: 'vehicleNo', label: 'Vehicle No. Assigned', align: 'left', field: row => row.vehicleNo },
-        { name: 'signIn', label: 'Sign In', align: 'left', field: row => row.signIn },
-        { name: 'signOff', label: 'Sign Off', align: 'left', field: row => row.signOff },
-        { name: 'source', label: 'Source', align: 'left', field: row => row.source },
-        { name: 'destination', label: 'Destination', align: 'left', field: row => row.destination },
-        { name: 'hoursWorked', label: 'Hours Worked', align: 'left', field: row => row.hoursWorked },
-        { name: 'status', label: 'Status', align: 'center', field: row => row.status },
-        { name: 'crewType', label: 'Crew Type', align: 'left', field: row => row.crewType },
+        {
+          name: "name",
+          label: "Employee Name",
+          align: "left",
+          field: (row) => row.name,
+        },
+        {
+          name: "id",
+          label: "Employee ID",
+          align: "left",
+          field: (row) => row.id,
+        },
+        {
+          name: "routeNo",
+          label: "Bus Route No.",
+          align: "left",
+          field: (row) => row.routeNo,
+        },
+        {
+          name: "vehicleNo",
+          label: "Vehicle No. Assigned",
+          align: "left",
+          field: (row) => row.vehicleNo,
+        },
+        {
+          name: "signIn",
+          label: "Sign In",
+          align: "left",
+          field: (row) => row.signIn,
+        },
+        {
+          name: "signOff",
+          label: "Sign Off",
+          align: "left",
+          field: (row) => row.signOff,
+        },
+        {
+          name: "source",
+          label: "Source",
+          align: "left",
+          field: (row) => row.source,
+        },
+        {
+          name: "destination",
+          label: "Destination",
+          align: "left",
+          field: (row) => row.destination,
+        },
+        {
+          name: "hoursWorked",
+          label: "Hours Worked",
+          align: "left",
+          field: (row) => row.hoursWorked,
+        },
+        {
+          name: "status",
+          label: "Status",
+          align: "center",
+          field: (row) => row.status,
+        },
+        {
+          name: "crewType",
+          label: "Crew Type",
+          align: "left",
+          field: (row) => row.crewType,
+        },
       ],
     };
   },
@@ -136,7 +195,11 @@ body {
 
 /* Footer */
 .q-footer {
-  background: linear-gradient(90deg, #009688, #00bcd4); /* Teal to cyan gradient */
+  background: linear-gradient(
+    90deg,
+    #009688,
+    #00bcd4
+  ); /* Teal to cyan gradient */
 }
 
 .q-footer p {
@@ -177,5 +240,4 @@ body {
   font-size: 1.5rem;
   font-weight: bold;
 }
-
 </style>

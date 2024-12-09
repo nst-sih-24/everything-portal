@@ -14,8 +14,14 @@
               row-key="sno"
               class="vehicle-table"
             >
-              <template v-slot:top-right>
-                <q-btn icon="refresh" color="primary" flat @click="refreshData" class="refresh-btn" />
+              <template #top-right>
+                <q-btn
+                  icon="refresh"
+                  color="primary"
+                  flat
+                  class="refresh-btn"
+                  @click="refreshData"
+                />
               </template>
             </q-table>
           </div>
@@ -26,50 +32,75 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 
 // Define columns for the table
 const columns = [
-  { name: 'sno', label: 'S.No', align: 'left', field: 'sno' },
-  { name: 'vehicleNo', label: 'Vehicle No.', align: 'left', field: 'vehicleNo' },
-  { name: 'typeOfVehicle', label: 'Type of Vehicle', align: 'left', field: 'typeOfVehicle' },
-  { name: 'totalDistanceCovered', label: 'Total Distance Covered (km)', align: 'left', field: 'totalDistanceCovered' },
-  { name: 'pocRegistration', label: 'POC Registration', align: 'left', field: 'pocRegistration' },
-  { name: 'insuranceExpiry', label: 'Insurance Expiry', align: 'left', field: 'insuranceExpiry' }
-]
+  { name: "sno", label: "S.No", align: "left", field: "sno" },
+  {
+    name: "vehicleNo",
+    label: "Vehicle No.",
+    align: "left",
+    field: "vehicleNo",
+  },
+  {
+    name: "typeOfVehicle",
+    label: "Type of Vehicle",
+    align: "left",
+    field: "typeOfVehicle",
+  },
+  {
+    name: "totalDistanceCovered",
+    label: "Total Distance Covered (km)",
+    align: "left",
+    field: "totalDistanceCovered",
+  },
+  {
+    name: "pocRegistration",
+    label: "POC Registration",
+    align: "left",
+    field: "pocRegistration",
+  },
+  {
+    name: "insuranceExpiry",
+    label: "Insurance Expiry",
+    align: "left",
+    field: "insuranceExpiry",
+  },
+];
 
 // Sample vehicle data
 const vehicleData = ref([
   {
     sno: 1,
-    vehicleNo: 'DL1ABC1234',
-    typeOfVehicle: 'AC',
+    vehicleNo: "DL1ABC1234",
+    typeOfVehicle: "AC",
     totalDistanceCovered: 52345,
-    pocRegistration: 'POC-12345-2024',
-    insuranceExpiry: '2025-10-01'
+    pocRegistration: "POC-12345-2024",
+    insuranceExpiry: "2025-10-01",
   },
   {
     sno: 2,
-    vehicleNo: 'DL2XYZ5678',
-    typeOfVehicle: 'Non-AC',
+    vehicleNo: "DL2XYZ5678",
+    typeOfVehicle: "Non-AC",
     totalDistanceCovered: 34567,
-    pocRegistration: 'POC-54321-2024',
-    insuranceExpiry: '2025-07-15'
+    pocRegistration: "POC-54321-2024",
+    insuranceExpiry: "2025-07-15",
   },
   {
     sno: 3,
-    vehicleNo: 'DL3DEF4321',
-    typeOfVehicle: 'Electric',
+    vehicleNo: "DL3DEF4321",
+    typeOfVehicle: "Electric",
     totalDistanceCovered: 12000,
-    pocRegistration: 'POC-67890-2024',
-    insuranceExpiry: '2026-02-20'
-  }
-])
+    pocRegistration: "POC-67890-2024",
+    insuranceExpiry: "2026-02-20",
+  },
+]);
 
 const refreshData = () => {
   // Simulate refreshing or updating data
-  console.log('Refreshing data...')
-}
+  console.log("Refreshing data...");
+};
 </script>
 
 <style scoped>
@@ -81,7 +112,7 @@ const refreshData = () => {
 }
 
 body {
-  font-family: 'Inter', sans-serif; /* Elegant, professional font */
+  font-family: "Inter", sans-serif; /* Elegant, professional font */
   background: #f0f2f5; /* Soft neutral background */
   color: #333;
 }
@@ -173,7 +204,7 @@ body {
 .q-table__cell--left[data-col="typeOfVehicle"]:before {
   font-size: 1.2rem;
   margin-right: 12px;
-  font-family: 'FontAwesome';
+  font-family: "FontAwesome";
 }
 
 /* Vehicle Type Icons */

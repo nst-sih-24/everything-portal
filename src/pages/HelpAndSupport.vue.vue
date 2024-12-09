@@ -11,17 +11,22 @@
 
               <!-- Route No -->
               <div class="q-mt-md">
-                <q-input filled label="Route No" v-model="routeNo" readonly />
+                <q-input v-model="routeNo" filled label="Route No" readonly />
               </div>
 
               <!-- Source -->
               <div class="q-mt-md">
-                <q-input filled label="Source" v-model="source" readonly />
+                <q-input v-model="source" filled label="Source" readonly />
               </div>
 
               <!-- Destination -->
               <div class="q-mt-md">
-                <q-input filled label="Destination" v-model="destination" readonly />
+                <q-input
+                  v-model="destination"
+                  filled
+                  label="Destination"
+                  readonly
+                />
               </div>
             </q-card-section>
           </q-card>
@@ -54,10 +59,7 @@
               </div>
 
               <!-- Bus Operations Table -->
-              <div
-                class="bus-table-container"
-                v-show="currentGraph === 'bus'"
-              >
+              <div v-show="currentGraph === 'bus'" class="bus-table-container">
                 <table class="q-table q-table--dense q-table--bordered">
                   <thead>
                     <tr>
@@ -162,7 +164,8 @@ export default defineComponent({
 
     // Toggle between graphs
     const toggleGraph = () => {
-      currentGraph.value = currentGraph.value === "customer" ? "bus" : "customer";
+      currentGraph.value =
+        currentGraph.value === "customer" ? "bus" : "customer";
     };
 
     return {
@@ -265,8 +268,8 @@ export default defineComponent({
 }
 
 /* Table Styling */
-.q-table th, .q-table td {
+.q-table th,
+.q-table td {
   text-align: center;
 }
-
 </style>

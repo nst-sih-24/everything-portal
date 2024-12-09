@@ -1,12 +1,36 @@
 <template>
-  <head ><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet"></head>
-  <div class="fullscreen bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white text-center q-pa-md flex flex-center">
+  <head>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <div
+    class="fullscreen bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white text-center q-pa-md flex flex-center"
+  >
     <div class="content">
-      <div class="error-code" style="font-size: 30vh; font-weight: bold; letter-spacing: 10px; animation: pulse 1.5s infinite;">
-        <i class="fa fa-bus"></i> <!-- Bus Icon -->
+      <div
+        class="error-code"
+        style="
+          font-size: 30vh;
+          font-weight: bold;
+          letter-spacing: 10px;
+          animation: pulse 1.5s infinite;
+        "
+      >
+        <i class="fa fa-bus"></i>
+        <!-- Bus Icon -->
       </div>
 
-      <div class="text-h2" style="opacity:.7; font-style: italic; margin-top: -20px; animation: bounce 2s ease-in-out infinite;">
+      <div
+        class="text-h2"
+        style="
+          opacity: 0.7;
+          font-style: italic;
+          margin-top: -20px;
+          animation: bounce 2s ease-in-out infinite;
+        "
+      >
         Oops. Nothing here...
       </div>
 
@@ -18,7 +42,7 @@
         to="/"
         label="Go Home"
         no-caps
-        style="border-radius: 30px; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);"
+        style="border-radius: 30px; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3)"
         :style="buttonStyles"
       />
     </div>
@@ -27,18 +51,18 @@
 
 <script setup>
 defineOptions({
-  name: 'ErrorNotFound'
+  name: "ErrorNotFound",
 });
 
 // Button styles
 const buttonStyles = {
-  borderRadius: '30px',
-  padding: '12px 30px',
-  fontSize: '18px',
-  fontWeight: 'bold',
-  boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.3)',
-  transition: 'transform 0.3s ease'
-}
+  borderRadius: "30px",
+  padding: "12px 30px",
+  fontSize: "18px",
+  fontWeight: "bold",
+  boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.3)",
+  transition: "transform 0.3s ease",
+};
 </script>
 
 <style scoped>
@@ -84,7 +108,8 @@ const buttonStyles = {
 
 /* Animation for bounce effect */
 @keyframes bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -94,7 +119,8 @@ const buttonStyles = {
 
 /* Animation for pulsing effect */
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     opacity: 1;
   }
@@ -119,7 +145,12 @@ const buttonStyles = {
 /* Responsive Design */
 @media (max-width: 768px) {
   .fullscreen {
-    background: linear-gradient(90deg, #ff007a, #d94e91, #ff6a95); /* Adjust gradient for smaller screens */
+    background: linear-gradient(
+      90deg,
+      #ff007a,
+      #d94e91,
+      #ff6a95
+    ); /* Adjust gradient for smaller screens */
     padding: 20px; /* Add padding for smaller screens */
   }
 

@@ -9,7 +9,7 @@
               <i class="fa fa-bus"></i> DTC Bus Route Planner
             </h3>
 
-            <q-form @submit="handleSubmit" class="form-container">
+            <q-form class="form-container" @submit="handleSubmit">
               <!-- Route No Input -->
               <q-input
                 v-model="routeNumber"
@@ -47,9 +47,9 @@
                   label="Enter Stop"
                   filled
                   class="input-field"
-                  @keyup.enter="addStop"
                   autofocus
                   :before="'fa-plus'"
+                  @keyup.enter="addStop"
                 />
                 <q-btn
                   label="Add Stop"
@@ -63,7 +63,13 @@
                   <ul>
                     <li v-for="(stop, index) in stops" :key="index">
                       {{ stop.name }}
-                      <q-btn flat icon="delete" color="negative" @click="removeStop(index)" />  <!-- Trigger removeStop on Delete -->
+                      <q-btn
+                        flat
+                        icon="delete"
+                        color="negative"
+                        @click="removeStop(index)"
+                      />
+                      <!-- Trigger removeStop on Delete -->
                     </li>
                   </ul>
                 </div>
@@ -99,7 +105,12 @@
             </h3>
             <GoogleMap
               api-key="AIzaSyCX7YZQFXhOtlyC-El4uG9baq4qSY68MZg"
-              style="width: 100%; height: 80%; border-radius: 8px; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);"
+              style="
+                width: 100%;
+                height: 80%;
+                border-radius: 8px;
+                box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+              "
               :center="center"
               :zoom="12"
             >
@@ -107,7 +118,11 @@
               <Marker :options="{ position: center }" />
 
               <!-- Dynamic Markers for Stops -->
-              <Marker v-for="(stop, index) in stops" :key="index" :options="{ position: stop.position }" />
+              <Marker
+                v-for="(stop, index) in stops"
+                :key="index"
+                :options="{ position: stop.position }"
+              />
             </GoogleMap>
           </div>
         </div>
@@ -117,57 +132,65 @@
 </template>
 
 <script setup>
-import { GoogleMap, Marker } from 'vue3-google-map'
-import { ref } from 'vue'
+import { GoogleMap, Marker } from "vue3-google-map";
+import { ref } from "vue";
 
-const center = { lat: 28.522813, lng: 77.216687};
-const routeNumber = ref('')
-const busNumber = ref('')
-const source = ref('')
-const destination = ref('')
-const stopInput = ref('')
-const stops = ref([])
+const center = { lat: 28.522813, lng: 77.216687 };
+const routeNumber = ref("");
+const busNumber = ref("");
+const source = ref("");
+const destination = ref("");
+const stopInput = ref("");
+const stops = ref([]);
 
 const handleSubmit = () => {
-  console.log('Route Details Submitted:', {
+  console.log("Route Details Submitted:", {
     routeNumber: routeNumber.value,
     busNumber: busNumber.value,
     source: source.value,
     destination: destination.value,
     stops: stops.value,
-  })
-}
+  });
+};
 
 const addStop = () => {
-  if (stopInput.value && !stops.value.some(stop => stop.name === stopInput.value)) {
+  if (
+    stopInput.value &&
+    !stops.value.some((stop) => stop.name === stopInput.value)
+  ) {
     const newStop = {
       name: stopInput.value,
-      position: { lat: center.lat + Math.random() * 0.01, lng: center.lng + Math.random() * 0.01 }
-    }
-    stops.value.push(newStop)
-    stopInput.value = ''  // Clear the input
+      position: {
+        lat: center.lat + Math.random() * 0.01,
+        lng: center.lng + Math.random() * 0.01,
+      },
+    };
+    stops.value.push(newStop);
+    stopInput.value = ""; // Clear the input
   }
-}
+};
 
 const removeStop = (index) => {
-  stops.value.splice(index, 1)
-}
+  stops.value.splice(index, 1);
+};
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-html, body {
-  background: url('https://www.example.com/background.jpg') no-repeat center center fixed;
+html,
+body {
+  background: url("https://www.example.com/background.jpg") no-repeat center
+    center fixed;
   background-size: cover;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #333;
   height: 100%;
   overflow: hidden;
@@ -237,7 +260,8 @@ html, body {
   margin-top: 16px;
 }
 
-.submit-btn, .add-stop-btn {
+.submit-btn,
+.add-stop-btn {
   padding: 10px 20px;
   font-size: 14px;
   border-radius: 6px;

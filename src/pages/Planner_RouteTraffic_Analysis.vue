@@ -12,24 +12,24 @@
                 <!-- Route No -->
                 <div class="q-mt-md">
                   <q-input
+                    v-model="routeNo1"
                     filled
                     label="Route No"
-                    v-model="routeNo1"
                     readonly
                   />
                 </div>
 
                 <!-- Source -->
                 <div class="q-mt-md">
-                  <q-input filled label="Source" v-model="source1" readonly />
+                  <q-input v-model="source1" filled label="Source" readonly />
                 </div>
 
                 <!-- Destination -->
                 <div class="q-mt-md">
                   <q-input
+                    v-model="destination1"
                     filled
                     label="Destination"
-                    v-model="destination1"
                     readonly
                   />
                 </div>
@@ -47,8 +47,8 @@
                 <div class="q-mt-md" @click="toggleGraph1">
                   <!-- Customer Traffic Chart -->
                   <div
-                    class="chart-container"
                     v-show="currentGraph1 === 'customer'"
+                    class="chart-container"
                     :class="{ 'chart-active': currentGraph1 === 'customer' }"
                   >
                     <canvas id="trafficChartCustomer1"></canvas>
@@ -56,8 +56,8 @@
 
                   <!-- Buses Operated Chart -->
                   <div
-                    class="chart-container"
                     v-show="currentGraph1 === 'bus'"
+                    class="chart-container"
                     :class="{ 'chart-active': currentGraph1 === 'bus' }"
                   >
                     <canvas id="trafficChartBus1"></canvas>
@@ -80,24 +80,24 @@
                 <!-- Route No -->
                 <div class="q-mt-md">
                   <q-input
+                    v-model="routeNo2"
                     filled
                     label="Route No"
-                    v-model="routeNo2"
                     readonly
                   />
                 </div>
 
                 <!-- Source -->
                 <div class="q-mt-md">
-                  <q-input filled label="Source" v-model="source2" readonly />
+                  <q-input v-model="source2" filled label="Source" readonly />
                 </div>
 
                 <!-- Destination -->
                 <div class="q-mt-md">
                   <q-input
+                    v-model="destination2"
                     filled
                     label="Destination"
-                    v-model="destination2"
                     readonly
                   />
                 </div>
@@ -115,8 +115,8 @@
                 <div class="q-mt-md" @click="toggleGraph2">
                   <!-- Customer Traffic Chart -->
                   <div
-                    class="chart-container"
                     v-show="currentGraph2 === 'customer'"
+                    class="chart-container"
                     :class="{ 'chart-active': currentGraph2 === 'customer' }"
                   >
                     <canvas id="trafficChartCustomer2"></canvas>
@@ -124,8 +124,8 @@
 
                   <!-- Buses Operated Chart -->
                   <div
-                    class="chart-container"
                     v-show="currentGraph2 === 'bus'"
+                    class="chart-container"
                     :class="{ 'chart-active': currentGraph2 === 'bus' }"
                   >
                     <canvas id="trafficChartBus2"></canvas>

@@ -14,21 +14,21 @@
       class="crew-table q-mb-md"
       :rows-per-page-options="[5, 10, 15]"
     >
-      <template v-slot:body-cell-actions="props">
+      <template #body-cell-actions="props">
         <q-td :props="props">
           <q-btn
-            @click.stop="editCrew(props.row)"
             flat
             label="Edit"
             color="primary"
             class="q-mr-sm rounded-full"
+            @click.stop="editCrew(props.row)"
           />
           <q-btn
-            @click.stop="deleteCrew(props.row.id)"
             flat
             label="Delete"
             color="negative"
             class="rounded-full"
+            @click.stop="deleteCrew(props.row.id)"
           />
         </q-td>
       </template>
@@ -40,31 +40,45 @@
         <h4>Edit Crew Details</h4>
         <q-form @submit.prevent="updateCrew">
           <q-input
-            filled
             v-model="currentCrew.name"
+            filled
             label="Name"
-            :rules="[val => val && val.length > 0 || 'Name is required']"
+            :rules="[(val) => (val && val.length > 0) || 'Name is required']"
             class="q-mb-md"
           />
           <q-input
-            filled
             v-model="currentCrew.workHours"
+            filled
             label="Work Hours"
             type="number"
-            :rules="[val => val >= 0 || 'Work hours must be a positive number']"
+            :rules="[
+              (val) => val >= 0 || 'Work hours must be a positive number',
+            ]"
             class="q-mb-md"
           />
           <q-input
-            filled
             v-model="currentCrew.restHours"
+            filled
             label="Rest Hours"
             type="number"
-            :rules="[val => val >= 0 || 'Rest hours must be a positive number']"
+            :rules="[
+              (val) => val >= 0 || 'Rest hours must be a positive number',
+            ]"
             class="q-mb-md"
           />
           <div class="q-mt-md">
-            <q-btn type="submit" label="Save Changes" color="primary" class="full-width" />
-            <q-btn @click="isEditing = false" label="Cancel" color="secondary" class="full-width q-mt-xs" />
+            <q-btn
+              type="submit"
+              label="Save Changes"
+              color="primary"
+              class="full-width"
+            />
+            <q-btn
+              label="Cancel"
+              color="secondary"
+              class="full-width q-mt-xs"
+              @click="isEditing = false"
+            />
           </div>
         </q-form>
       </div>
@@ -78,17 +92,50 @@ export default {
   data() {
     return {
       crewList: [
-        { id: 1, employeeId: "1001", name: "John Doe", workHours: 160, restHours: 40 },
-        { id: 2, employeeId: "1002", name: "Jane Smith", workHours: 150, restHours: 50 },
-        { id: 3, employeeId: "1003", name: "Samuel Lee", workHours: 170, restHours: 30 },
+        {
+          id: 1,
+          employeeId: "1001",
+          name: "John Doe",
+          workHours: 160,
+          restHours: 40,
+        },
+        {
+          id: 2,
+          employeeId: "1002",
+          name: "Jane Smith",
+          workHours: 150,
+          restHours: 50,
+        },
+        {
+          id: 3,
+          employeeId: "1003",
+          name: "Samuel Lee",
+          workHours: 170,
+          restHours: 30,
+        },
       ],
       isEditing: false,
       currentCrew: {},
       columns: [
-        { name: "employeeId", label: "Employee ID", align: "left", field: "employeeId" },
+        {
+          name: "employeeId",
+          label: "Employee ID",
+          align: "left",
+          field: "employeeId",
+        },
         { name: "name", label: "Name", align: "left", field: "name" },
-        { name: "workHours", label: "Work Hours", align: "left", field: "workHours" },
-        { name: "restHours", label: "Rest Hours", align: "left", field: "restHours" },
+        {
+          name: "workHours",
+          label: "Work Hours",
+          align: "left",
+          field: "workHours",
+        },
+        {
+          name: "restHours",
+          label: "Rest Hours",
+          align: "left",
+          field: "restHours",
+        },
         { name: "actions", label: "Actions", align: "center" },
       ],
     };
@@ -99,7 +146,9 @@ export default {
       this.isEditing = true;
     },
     updateCrew() {
-      const index = this.crewList.findIndex((crew) => crew.id === this.currentCrew.id);
+      const index = this.crewList.findIndex(
+        (crew) => crew.id === this.currentCrew.id
+      );
       if (index !== -1) {
         this.$set(this.crewList, index, { ...this.currentCrew });
         this.isEditing = false;

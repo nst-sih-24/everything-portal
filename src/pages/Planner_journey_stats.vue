@@ -12,7 +12,7 @@
             :pagination="pagination"
             class="my-table"
           >
-            <template v-slot:top-right>
+            <template #top-right>
               <q-input
                 v-model="filter"
                 placeholder="Search"
@@ -25,14 +25,14 @@
               />
             </template>
 
-            <template v-slot:body="props">
+            <template #body="props">
               <q-tr
                 :props="props"
+                :class="{
+                  'highlighted-row': isRowHighlighted(props.row.id),
+                }"
                 @mouseover="hoverRow(props.row.id)"
                 @mouseleave="resetRowHover"
-                :class="{
-                  'highlighted-row': isRowHighlighted(props.row.id)
-                }"
               >
                 <q-td auto-width>
                   <div class="table-cell-content">{{ props.row.sno }}</div>
@@ -49,11 +49,11 @@
                   <q-btn
                     color="primary"
                     label="More Details"
-                    @click="showDetails(props.row)"
                     round
                     dense
                     flat
                     class="details-btn"
+                    @click="showDetails(props.row)"
                   />
                 </q-td>
               </q-tr>
@@ -63,13 +63,23 @@
       </div>
 
       <!-- More Details Dialog -->
-      <q-dialog v-model="showDialog" transition-show="scale" transition-hide="scale">
+      <q-dialog
+        v-model="showDialog"
+        transition-show="scale"
+        transition-hide="scale"
+      >
         <q-card class="dialog-card">
           <q-card-section>
             <div class="dialog-header text-h6">More Details</div>
             <div class="dialog-content">
-              <div><strong>No. of Customers:</strong> {{ selectedRow?.noOfCustomers }}</div>
-              <div><strong>Vehicle Type Operated:</strong> {{ selectedRow?.vehicleTypeOperated }}</div>
+              <div>
+                <strong>No. of Customers:</strong>
+                {{ selectedRow?.noOfCustomers }}
+              </div>
+              <div>
+                <strong>Vehicle Type Operated:</strong>
+                {{ selectedRow?.vehicleTypeOperated }}
+              </div>
             </div>
           </q-card-section>
 
@@ -78,8 +88,8 @@
               flat
               label="Close"
               color="white"
-              @click="showDialog = false"
               class="close-btn"
+              @click="showDialog = false"
             />
           </q-card-actions>
         </q-card>
@@ -128,15 +138,56 @@ export default defineComponent({
 
     // Table Columns
     const columns = [
-      { name: "sno", label: "S.No.", align: "left", field: "sno", required: true },
-      { name: "busRouteNo", label: "Bus Route No", align: "left", field: "busRouteNo" },
-      { name: "vehicleNo", label: "Vehicle No", align: "left", field: "vehicleNo" },
+      {
+        name: "sno",
+        label: "S.No.",
+        align: "left",
+        field: "sno",
+        required: true,
+      },
+      {
+        name: "busRouteNo",
+        label: "Bus Route No",
+        align: "left",
+        field: "busRouteNo",
+      },
+      {
+        name: "vehicleNo",
+        label: "Vehicle No",
+        align: "left",
+        field: "vehicleNo",
+      },
       { name: "src", label: "Source", align: "left", field: "src" },
-      { name: "destination", label: "Destination", align: "left", field: "destination" },
-      { name: "signInTime", label: "Sign In Time", align: "left", field: "signInTime" },
-      { name: "signOffTime", label: "Sign Off Time", align: "left", field: "signOffTime" },
-      { name: "driverAssigned", label: "Driver Assigned", align: "left", field: "driverAssigned" },
-      { name: "conductorAssigned", label: "Conductor Assigned", align: "left", field: "conductorAssigned" },
+      {
+        name: "destination",
+        label: "Destination",
+        align: "left",
+        field: "destination",
+      },
+      {
+        name: "signInTime",
+        label: "Sign In Time",
+        align: "left",
+        field: "signInTime",
+      },
+      {
+        name: "signOffTime",
+        label: "Sign Off Time",
+        align: "left",
+        field: "signOffTime",
+      },
+      {
+        name: "driverAssigned",
+        label: "Driver Assigned",
+        align: "left",
+        field: "driverAssigned",
+      },
+      {
+        name: "conductorAssigned",
+        label: "Conductor Assigned",
+        align: "left",
+        field: "conductorAssigned",
+      },
       { name: "actions", label: "", align: "center" },
     ];
 
@@ -159,8 +210,8 @@ export default defineComponent({
     // Filter the table data based on the search query
     const filteredTableData = computed(() => {
       const searchTerm = filter.value.toLowerCase();
-      return tableData.value.filter(row => {
-        return Object.values(row).some(value =>
+      return tableData.value.filter((row) => {
+        return Object.values(row).some((value) =>
           String(value).toLowerCase().includes(searchTerm)
         );
       });
@@ -279,7 +330,7 @@ export default defineComponent({
 
 .close-btn:hover {
   background-color: #0056b3;
-  color : white;
+  color: white;
 }
 
 .q-card-actions {

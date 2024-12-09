@@ -24,9 +24,15 @@
       <!-- Taskbar Below Navbar -->
       <div class="taskbar">
         <router-link to="/" class="task-item">Home</router-link>
-        <router-link to="/crewManager.vue" class="task-item">Crew Manager</router-link>
-        <router-link to="/busManager.vue" class="task-item">Bus Manager</router-link>
-        <router-link to="/timetable.vue" class="task-item">Timetable</router-link>
+        <router-link to="/crewManager.vue" class="task-item"
+          >Crew Manager</router-link
+        >
+        <router-link to="/busManager.vue" class="task-item"
+          >Bus Manager</router-link
+        >
+        <router-link to="/timetable.vue" class="task-item"
+          >Timetable</router-link
+        >
       </div>
 
       <!-- Page Content -->
@@ -57,7 +63,9 @@
                 <td>
                   <!-- Using ordered list for numbered bullets -->
                   <ol>
-                    <li v-for="(stop, idx) in route.stops" :key="idx">{{ stop }}</li>
+                    <li v-for="(stop, idx) in route.stops" :key="idx">
+                      {{ stop }}
+                    </li>
                   </ol>
                 </td>
               </tr>
@@ -70,7 +78,9 @@
     <!-- Footer Section -->
     <footer class="footer">
       <div class="footer-links">
-        <router-link to="/help.vue" class="footer-link">Help & Support</router-link>
+        <router-link to="/help.vue" class="footer-link"
+          >Help & Support</router-link
+        >
         <p>&copy; 2024 Byte Knightz</p>
       </div>
     </footer>
@@ -79,13 +89,13 @@
 
 <script>
 export default {
-  name: "RoutesBus_Details",
+  name: "RoutesBusDetails",
   data() {
     return {
       // Sample employee data (to be dynamically fetched after login)
       employeeId: "12345",
       employeeName: "Sumit",
-      
+
       // Bus routes data
       busRoutes: [
         {
@@ -93,43 +103,86 @@ export default {
           source: "Kendriya Terminal",
           destination: "Rohini Sector 16",
           stops: [
-            "Regal", "New Delhi Railway Station", "Police Station Paharganj", "D.B. Gupta Market", 
-            "Sarai Rohilla / Anand Parvat", "Zakhira", "Punjabi Bagh", "Wazirpur Depot", 
-            "Pitampura K.D. Block", "Rohini Sector 7/8 X-ing", "Vidya Vihar", "Rohini Sector 15 Pocket-D2", 
-            "Rohini Sector 11", "Rohini Sector 16"
-          ]
+            "Regal",
+            "New Delhi Railway Station",
+            "Police Station Paharganj",
+            "D.B. Gupta Market",
+            "Sarai Rohilla / Anand Parvat",
+            "Zakhira",
+            "Punjabi Bagh",
+            "Wazirpur Depot",
+            "Pitampura K.D. Block",
+            "Rohini Sector 7/8 X-ing",
+            "Vidya Vihar",
+            "Rohini Sector 15 Pocket-D2",
+            "Rohini Sector 11",
+            "Rohini Sector 16",
+          ],
         },
         {
           busRouteNo: "100",
           source: "Kendriya Terminal",
           destination: "Adarsh Nagar",
           stops: [
-            "Kendriya Terminal", "Regal", "Shivaji Stadium", "Chitra Gupta Road", "Master Prithvi Nath Marg / Faiz Road", 
-            "Ice Factory", "Malka Ganj", "Maurice Nagar", "G.T.B. Nagar", "Model Town II", "Adarsh Nagar"
-          ]
+            "Kendriya Terminal",
+            "Regal",
+            "Shivaji Stadium",
+            "Chitra Gupta Road",
+            "Master Prithvi Nath Marg / Faiz Road",
+            "Ice Factory",
+            "Malka Ganj",
+            "Maurice Nagar",
+            "G.T.B. Nagar",
+            "Model Town II",
+            "Adarsh Nagar",
+          ],
         },
         {
           busRouteNo: "101",
           source: "Nizamuddin Railway Station",
           destination: "Swaroop Nagar JJ Colony GT Road",
           stops: [
-            "Nizamuddin Railway Station", "Police Station Nizamuddin", "Golf Club / Sunder Nagar", "Supreme Court", 
-            "Delhi Gate", "Red Fort", "ISBT / Kashmiri Gate", "Old Secretariat", "G.T.B. Nagar", "Model Town II", 
-            "Adarsh Nagar", "Jahangir Puri", "Durga Chowk", "Shraddhanand Colony", "Swaroop Nagar JJ Colony GT Road"
-          ]
+            "Nizamuddin Railway Station",
+            "Police Station Nizamuddin",
+            "Golf Club / Sunder Nagar",
+            "Supreme Court",
+            "Delhi Gate",
+            "Red Fort",
+            "ISBT / Kashmiri Gate",
+            "Old Secretariat",
+            "G.T.B. Nagar",
+            "Model Town II",
+            "Adarsh Nagar",
+            "Jahangir Puri",
+            "Durga Chowk",
+            "Shraddhanand Colony",
+            "Swaroop Nagar JJ Colony GT Road",
+          ],
         },
         {
           busRouteNo: "102",
           source: "Old Delhi Railway Station",
           destination: "Rohini Sector 22 (Lakhi Ram Park)",
           stops: [
-            "Old Delhi Railway Station", "Mori Gate", "Ice Factory", "Malka Ganj", "R.P. Bagh", "Bara Bagh", 
-            "Ashok Vihar X-ing", "Wazirpur Depot", "Pitampura J.D. Block", "Rohini Sector 7/8 X-ing", "Rohini Sector 6", 
-            "Rohini Sector 24 Nallah / Rohini Sector 24 Gas Pla", "Rohini Sector 25 (Deep Vihar)", "Rohini Sector 23", 
-            "Rohini Sector 20 JJ Colony", "Rohini Sector 22 (Lakhi Ram Park)"
-          ]
-        }
-      ]
+            "Old Delhi Railway Station",
+            "Mori Gate",
+            "Ice Factory",
+            "Malka Ganj",
+            "R.P. Bagh",
+            "Bara Bagh",
+            "Ashok Vihar X-ing",
+            "Wazirpur Depot",
+            "Pitampura J.D. Block",
+            "Rohini Sector 7/8 X-ing",
+            "Rohini Sector 6",
+            "Rohini Sector 24 Nallah / Rohini Sector 24 Gas Pla",
+            "Rohini Sector 25 (Deep Vihar)",
+            "Rohini Sector 23",
+            "Rohini Sector 20 JJ Colony",
+            "Rohini Sector 22 (Lakhi Ram Park)",
+          ],
+        },
+      ],
     };
   },
 };
@@ -289,7 +342,6 @@ ol li {
   margin-top: 20px; /* Optional: Adds space between the content and footer */
   /* Removed bottom: 0 and position: fixed to let it follow content */
 }
-
 
 .footer-links {
   display: flex;
