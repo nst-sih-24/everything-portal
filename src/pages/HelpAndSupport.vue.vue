@@ -1,398 +1,272 @@
 <template>
-    <!-- <q-page> -->
-    <q-page class="q-pa-none">
-        <!-- Hero Image Section -->
-        <div class="hero-image">
-            <div class="image" v-for="(image, index) in heroImages" :key="index" :style="{ backgroundImage: 'url(' + image + ')' }"></div>
-            <!-- Search Form -->
-            <div class="search-container">
-                <q-input v-model="source" placeholder="Source" />
-                <q-btn @click="swapLocations" icon="swap_horiz" />
-                <q-input v-model="destination" placeholder="Destination" />
-                <q-input v-model="busNumber" placeholder="Bus no." />
-                <q-btn @click="searchBus" label="Search" class="search-btn" />
-                <div class="hero-image q-py-xl">
-                    <div class="row justify-center q-py-xl q-my-xl">
-                        <div class="col-10 col-md-6">
-                            <q-card>
-                                <q-item>
-                                    <q-item-section>
-                                        <q-input outlined dense v-model="source" placeholder="Source" />
-                                    </q-item-section>
-                                    <q-item-section side style="padding: 0">
-                                        <q-btn flat round @click="swapLocations" icon="swap_horiz" />
-                                    </q-item-section>
-                                    <q-item-section>
-                                        <q-input outlined dense v-model="destination" placeholder="Destination" />
-                                    </q-item-section>
-                                    <q-item-section>
-                                        <q-input outlined dense v-model="busNumber" placeholder="Bus no." />
-                                    </q-item-section>
-                                    <q-item-section>
-                                        <q-btn @click="searchBus" label="Search" class="search-btn" />
-                                    </q-item-section>
-                                </q-item>
-                            </q-card>
-                        </div>
-                    </div>
+  <q-page padding>
+    <div class="dashboard-wrapper">
+      <!-- Flex Container to hold both Route Info and Graphs -->
+      <div class="row q-col-gutter-md q-mt-md route-container">
+        <!-- Route Information Section -->
+        <div class="col-4 route-info">
+          <q-card bordered class="rounded-card light-theme-card">
+            <q-card-section>
+              <div class="text-h6">Route Information</div>
+
+              <!-- Route No -->
+              <div class="q-mt-md">
+                <q-input filled label="Route No" v-model="routeNo" readonly />
+              </div>
+
+              <!-- Source -->
+              <div class="q-mt-md">
+                <q-input filled label="Source" v-model="source" readonly />
+              </div>
+
+              <!-- Destination -->
+              <div class="q-mt-md">
+                <q-input filled label="Destination" v-model="destination" readonly />
+              </div>
+            </q-card-section>
+          </q-card>
+        </div>
+
+        <!-- Route Traffic & Bus Operations Section -->
+        <div class="col-8 route-traffic">
+          <q-card bordered class="rounded-card light-theme-card">
+            <q-card-section>
+              <div class="text-h6">Route Traffic & Bus Operations</div>
+
+              <!-- Chart Container with Rotation Effect -->
+              <div class="q-mt-md chart-container-wrapper">
+                <!-- Both charts container (with rotate effect) -->
+                <div
+                  class="chart-container"
+                  :class="{ 'chart-active': currentGraph === 'customer' }"
+                >
+                  <!-- Customer Traffic Chart -->
+                  <canvas id="trafficChartCustomer"></canvas>
                 </div>
-            </div>
+
+                <div
+                  class="chart-container"
+                  :class="{ 'chart-active': currentGraph === 'bus' }"
+                >
+                  <!-- Buses Operated Chart -->
+                  <canvas id="trafficChartBus"></canvas>
+                </div>
+              </div>
+
+              <!-- Bus Operations Table -->
+              <div
+                class="bus-table-container"
+                v-show="currentGraph === 'bus'"
+              >
+                <table class="q-table q-table--dense q-table--bordered">
+                  <thead>
+                    <tr>
+                      <th>Day</th>
+                      <th>Bus Operated</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(day, index) in busData.labels" :key="index">
+                      <td>{{ day }}</td>
+                      <td>{{ busData.datasets[0].data[index] }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </q-card-section>
+          </q-card>
         </div>
-    
-        <!-- Popular Destinations Section -->
-        <div class="q-px-xl">
-            <h2 class="pop-heading">Popular places in Delhi...</h2>
-            <div class="row popular-destinations q-col-gutter-md">
-                <transition-group appear enter-active-class="animated slideInUp" leave-active-class="animated slideOutDown">
-                    <div v-for="place in popularPlaces" :key="place.id" class="col-6 col-md-3">
-                        <q-card class="popular-card">
-                            <q-img :src="place.image" :ratio="4 / 3"></q-img>
-                            <q-card-section class="destination-text">
-                                <a :href="place.link" target="_blank">{{ place.name }}</a>
-                            </q-card-section>
-                        </q-card>
-                    </div>
-                </transition-group>
-            </div>
-        </div>
-    
-        <!-- News and Announcement Section -->
-        <div class="news-announcements">
-            <h2 class="news-heading">Latest News and Announcements</h2>
-            <div class="news-item">
-                <h3>New Bus Routes Added!</h3>
-                <p>We are excited to announce the addition of new bus routes across Delhi. Stay tuned for further updates!</p>
-                <p>
-                    We are excited to announce the addition of new bus routes across
-                    Delhi. Stay tuned for further updates!
-                </p>
-            </div>
-            <div class="news-item">
-                <h3>Bus Timings Changed</h3>
-                <p>Due to road construction, some bus routes have updated timings. Check your local routes for the new schedules.</p>
-                <p>
-                    Due to road construction, some bus routes have updated timings. Check
-                    your local routes for the new schedules.
-                </p>
-            </div>
-            <div class="news-item">
-                <h3>Feedback Program</h3>
-                <p>Your feedback matters! We are launching a new feedback program to improve our services. Share your thoughts with us!</p>
-                <p>
-                    Your feedback matters! We are launching a new feedback program to
-                    improve our services. Share your thoughts with us!
-                </p>
-            </div>
-        </div>
-    
-        <!-- Footer Section with Map and Contact Us -->
-        <footer class="footer-container">
-            <div class="contact-us">
-                <p class="quick"><b>Quick links</b></p>
-                <p>
-                    <router-link to="Helpline No."> Helpline </router-link>
-                </p>
-                <p>
-                    <router-link to="About Us"> About Us </router-link>
-                </p>
-                <p>
-                    <router-link to="Privacy Policy">Privacy Policy</router-link>
-                </p>
-                <p>
-                    <router-link to="Home"> Home </router-link>
-                </p>
-                <p>
-                    <router-link to="Feedback"> Feedback </router-link>
-                </p>
-            </div>
-    
-            <div class="contact-info">
-                <h3>Contact Us</h3>
-                <p>For inquiries, reach us at:</p>
-                <p>Email: contact@busapp.com</p>
-                <p>Phone: +91 123 456 7890</p>
-            </div>
-    
-            <div class="social-media">
-                <q-btn round flat icon="fab fa-facebook" class="social-icon" />
-                <q-btn round flat icon="fab fa-x-twitter" class="social-icon" />
-                <q-btn round flat icon="fab fa-instagram" class="social-icon" />
-                <q-btn round flat icon="fab fa-linkedin" class="social-icon" />
-                <q-btn round flat icon="fab fa-youtube" class="social-icon" />
-            </div>
-    
-            <div class="col-12 col-md-3" id="social-links-container"></div>
-    
-            <!-- Google Map Section in Footer -->
-            <div class="map-box">
-                <GoogleMap api-key="AIzaSyCX7YZQFXhOtlyC-El4uG9baq4qSY68MZg" style="width: 100%; height: 100%" :center="center" :zoom="12">
-                    <GMapMarker :options="{
-                position: center,
-                title: 'Delhi, India',
-              }" />
-                    <GMapMarker :options="{
-                  position: center,
-                  title: 'Delhi, India',
-                }" />
-                </GoogleMap>
-            </div>
-        </footer>
-    </q-page>
-    </template>
-    
-    
-    <script>
-    // import { GoogleMap, Marker as GMapMarker } from '@fawmi/vue-google-maps';
-    
-    import { GoogleMap, Marker as GMapMarker } from "vue3-google-map";
-    export default {
-        data() {
-            return {
-                source: "",
-                destination: "",
-                busNumber: "",
-                center: {
-                    lat: 28.6139,
-                    lng: 77.209
-                },
-                heroImages: [
-                    "https://etimg.etb2bimg.com/photo/106277723.cms",
-                    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/DTC_AC_Bus.jpg/2560px-DTC_AC_Bus.jpg",
-                    "data:image/jpeg;base64,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",
-                ],
-                popularPlaces: [{
-                        id: 1,
-                        name: "India Gate",
-                        image: "https://upload.wikimedia.org/wikipedia/commons/7/79/India_Gate.jpg",
-                        link: "https://en.wikipedia.org/wiki/India_Gate",
-                    },
-                    {
-                        id: 2,
-                        name: "Qutub Minar",
-                        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Qutb_minar_ruins.jpg/800px-Qutb_minar_ruins.jpg",
-                        link: "https://en.wikipedia.org/wiki/Qutub_Minar",
-                    },
-                    {
-                        id: 3,
-                        name: "Red Fort",
-                        image: "https://upload.wikimedia.org/wikipedia/commons/3/34/Red_Fort.jpg",
-                        link: "https://en.wikipedia.org/wiki/Red_Fort",
-                    },
-                    {
-                        id: 4,
-                        name: "Lotus Temple",
-                        image: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Lotus_Temple.jpg",
-                        link: "https://en.wikipedia.org/wiki/Lotus_Temple",
-                    },
-                ],
-            };
+      </div>
+    </div>
+  </q-page>
+</template>
+
+<script>
+import { defineComponent, onMounted, ref } from "vue";
+import Chart from "chart.js/auto";
+
+export default defineComponent({
+  name: "RouteTrafficAnalysis",
+  setup() {
+    const routeNo = ref("101");
+    const source = ref("City Center");
+    const destination = ref("Airport");
+
+    // State to track which graph is active
+    const currentGraph = ref("customer");
+
+    // Data for charts
+    const customerTrafficData = ref({
+      labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      datasets: [
+        {
+          label: "Customer Traffic",
+          data: [100, 120, 150, 180, 200, 190, 250],
+          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          borderColor: "rgba(75, 192, 192, 1)",
+          borderWidth: 1,
+          fill: true,
         },
-        mounted() {},
-        methods: {
-            swapLocations() {
-                let temp = this.source;
-                this.source = this.destination;
-                this.destination = temp;
+      ],
+    });
+
+    const busData = ref({
+      labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      datasets: [
+        {
+          label: "Buses Operated",
+          data: [5, 6, 7, 8, 9, 7, 6],
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          borderColor: "rgba(255, 99, 132, 1)",
+          borderWidth: 1,
+          fill: false,
+        },
+      ],
+    });
+
+    const chartInstances = ref({});
+
+    // Create chart instance for customer traffic
+    const createChart = (canvasId, chartData) => {
+      return new Chart(document.getElementById(canvasId).getContext("2d"), {
+        type: "line",
+        data: chartData,
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true,
+              position: "top",
             },
-            searchBus() {
-                // Placeholder function for searching bus routes
-                console.log(
-                    "Searching buses from",
-                    this.source,
-                    "to",
-                    this.destination,
-                    "Bus Number:",
-                    this.busNumber
-                );
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
             },
+            y: {
+              beginAtZero: true,
+            },
+          },
         },
-        components: {
-            GoogleMap,
-            GMapMarker,
-        },
+      });
     };
-    </script>
-    
-    <style scoped>
-    .hero-image {
-        position: relative;
-        width: 100%;
-        height: 300px;
-        overflow: hidden;
-        background-image: url("assets/images/hero/hero1.jpeg");
-        transition: all 0.5s ease;
-        animation: heroImageChanger 7s infinite;
-        animation-direction: alternate;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 100%;
-    }
-    
-    @keyframes heroImageChanger {
-        0% {
-            background-image: url("assets/images/hero/hero1.jpeg");
-        }
-    
-        24% {
-            background-image: url("assets/images/hero/hero1.jpeg");
-        }
-    
-        25% {
-            background-image: url("assets/images/hero/hero2.jpg");
-        }
-    
-        49% {
-            background-image: url("assets/images/hero/hero2.jpg");
-        }
-    
-        50% {
-            background-image: url("assets/images/hero/hero3.jpg");
-        }
-    
-        74% {
-            background-image: url("assets/images/hero/hero3.jpg");
-        }
-    
-        75% {
-            background-image: url("assets/images/hero/hero1.jpeg");
-        }
-    
-        100% {
-            background-image: url("assets/images/hero/hero1.jpeg");
-        }
-    }
-    
-    .image {
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: center;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-    
-    .search-container {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: flex;
-        gap: 10px;
-    }
-    
-    .search-btn {
-        background-color: #761111;
-        color: white;
-    }
-    
-    .pop-heading {
-        font-size: 24px;
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    
-    .popular-destinations {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .popular-card {
-        max-width: 250px;
-        margin: 10px;
-    }
-    
-    .destination-text {
-        text-align: center;
-        font-size: 16px;
-    }
-    
-    .q-page {
-        background-color: #f5f5f5;
-        padding: 20px;
-    }
-    
-    /* News and Announcement Section Styles */
-    .news-announcements {
-        margin-top: 30px;
-        background-color: #f1f1f1;
-        padding: 20px;
-        border-radius: 8px;
-    }
-    
-    .news-heading {
-        text-align: center;
-        font-size: 26px;
-        font-weight: bold;
-        margin-bottom: 20px;
-    }
-    
-    .news-item {
-        margin-bottom: 20px;
-    }
-    
-    .news-item h3 {
-        font-size: 20px;
-        color: #333;
-    }
-    
-    .news-item p {
-        font-size: 16px;
-        color: #555;
-    }
-    
-    /* Footer Styles */
-    .footer-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        padding: 30px;
-        background-color: #333;
-        color: white;
-        margin-top: 50px;
-        border-radius: 10px;
-    }
-    
-    .contact-us,
-    .contact-info {
-        flex: 1;
-        padding: 20px;
-    }
-    
-    .social-media {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        margin-top: 20px;
-    }
-    
-    .social-icon {
-        font-size: 24px;
-        color: white;
-        transition: transform 0.3s ease;
-    }
-    
-    .social-icon:hover {
-        transform: scale(1.2);
-    }
-    
-    .map-box {
-        flex: 2;
-        height: 300px;
-        width: 100%;
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.15);
-        transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
-        transition: transform 0.3s ease;
-    }
-    
-    .map-box:hover {
-        transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.05);
-    }
-    </style>
-    
+
+    // Create charts when mounted
+    onMounted(() => {
+      chartInstances.value.customer = createChart(
+        "trafficChartCustomer",
+        customerTrafficData.value
+      );
+      chartInstances.value.bus = createChart("trafficChartBus", busData.value);
+    });
+
+    // Toggle between graphs
+    const toggleGraph = () => {
+      currentGraph.value = currentGraph.value === "customer" ? "bus" : "customer";
+    };
+
+    return {
+      routeNo,
+      source,
+      destination,
+      currentGraph,
+      toggleGraph,
+      busData,
+    };
+  },
+});
+</script>
+
+<style scoped>
+.dashboard-wrapper {
+  background-color: #f0ecec;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(210, 48, 48, 0.1);
+}
+
+/* Container for both Route Info and Graph */
+.route-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  transition: transform 0.7s ease-in-out;
+  height: 100%;
+}
+
+/* Styling for the Route Information Section */
+.route-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%; /* Ensure it takes up the full height of the parent container */
+}
+
+/* Styling for the Route Traffic & Bus Operations Section */
+.route-traffic {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%; /* Ensure it takes up the full height of the parent container */
+}
+
+/* Card Styling */
+.light-theme-card {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+}
+
+.rounded-card {
+  border-radius: 12px;
+}
+
+.q-card-section {
+  padding: 20px;
+}
+
+/* Chart Container Styling */
+.chart-container-wrapper {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 1s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.chart-active {
+  opacity: 1;
+  visibility: visible;
+  transform: rotateY(0deg);
+}
+
+.chart-container + .chart-container {
+  transform: rotateY(180deg);
+}
+
+/* Bus Table Styling */
+.bus-table-container {
+  width: 100%;
+  display: none;
+}
+
+.bus-table-active {
+  display: block;
+  transition: opacity 0.7s ease-in-out;
+}
+
+/* Table Styling */
+.q-table th, .q-table td {
+  text-align: center;
+}
+
+</style>
