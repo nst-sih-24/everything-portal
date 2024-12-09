@@ -12,7 +12,7 @@
             v-model="activeTab" 
             class="q-mt-md q-mb-lg text-center" 
             active-color="primary" 
-            indicator-color="secondary"
+            indicator-color="secondary" 
           >
             <q-tab name="card" label="Card Payment" />
             <q-tab name="upi" label="UPI Payment" />
