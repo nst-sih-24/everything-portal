@@ -3,9 +3,15 @@
     <!-- Hero Image Section -->
     <div class="hero-image">
       <div
+<<<<<<< Updated upstream
         v-for="(image, index) in heroImages"
         :key="index"
         class="image"
+=======
+        class="image"
+        v-for="(image, index) in heroImages"
+        :key="index"
+>>>>>>> Stashed changes
         :style="{ backgroundImage: 'url(' + image + ')' }"
       ></div>
       <!-- Search Form -->

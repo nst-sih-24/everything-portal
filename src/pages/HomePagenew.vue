@@ -4,18 +4,31 @@
     <!-- Hero Image Section -->
     <div class="hero-image">
       <div
+<<<<<<< Updated upstream
         v-for="(image, index) in heroImages"
         :key="index"
         class="image"
+=======
+        class="image"
+        v-for="(image, index) in heroImages"
+        :key="index"
+>>>>>>> Stashed changes
         :style="{ backgroundImage: 'url(' + image + ')' }"
       ></div>
       <!-- Search Form -->
       <div class="search-container">
         <q-input v-model="source" placeholder="Source" />
+<<<<<<< Updated upstream
         <q-btn icon="swap_horiz" @click="swapLocations" />
         <q-input v-model="destination" placeholder="Destination" />
         <q-input v-model="busNumber" placeholder="Bus no." />
         <q-btn label="Search" class="search-btn" @click="searchBus" />
+=======
+        <q-btn @click="swapLocations" icon="swap_horiz" />
+        <q-input v-model="destination" placeholder="Destination" />
+        <q-input v-model="busNumber" placeholder="Bus no." />
+        <q-btn @click="searchBus" label="Search" class="search-btn" />
+>>>>>>> Stashed changes
         <div class="hero-image q-py-xl">
           <div class="row justify-center q-py-xl q-my-xl">
             <div class="col-10 col-md-6">
@@ -23,9 +36,15 @@
                 <q-item>
                   <q-item-section>
                     <q-input
+<<<<<<< Updated upstream
                       v-model="source"
                       outlined
                       dense
+=======
+                      outlined
+                      dense
+                      v-model="source"
+>>>>>>> Stashed changes
                       placeholder="Source"
                     />
                   </q-item-section>
@@ -33,28 +52,46 @@
                     <q-btn
                       flat
                       round
+<<<<<<< Updated upstream
                       icon="swap_horiz"
                       @click="swapLocations"
+=======
+                      @click="swapLocations"
+                      icon="swap_horiz"
+>>>>>>> Stashed changes
                     />
                   </q-item-section>
                   <q-item-section>
                     <q-input
+<<<<<<< Updated upstream
                       v-model="destination"
                       outlined
                       dense
+=======
+                      outlined
+                      dense
+                      v-model="destination"
+>>>>>>> Stashed changes
                       placeholder="Destination"
                     />
                   </q-item-section>
                   <q-item-section>
                     <q-input
+<<<<<<< Updated upstream
                       v-model="busNumber"
                       outlined
                       dense
+=======
+                      outlined
+                      dense
+                      v-model="busNumber"
+>>>>>>> Stashed changes
                       placeholder="Bus no."
                     />
                   </q-item-section>
                   <q-item-section>
                     <q-btn
+<<<<<<< Updated upstream
                       label="Search"
                       class="search-btn"
                       @click="searchBus"
@@ -62,6 +99,15 @@
                   </q-item-section>
                 </q-item>
               </q-card>
+=======
+                      @click="searchBus"
+                      label="Search"
+                      class="search-btn"
+                    />
+                  </q-item-section>
+                </q-item> </q-card
+              >``
+>>>>>>> Stashed changes
             </div>
           </div>
         </div>
@@ -167,11 +213,19 @@
         <q-btn round flat icon="fab fa-youtube" class="social-icon" />
       </div>
 
+<<<<<<< Updated upstream
       <div id="social-links-container" class="col-12 col-md-3"></div>
 
       <!-- Google Map Section in Footer -->
       <div class="map-box">
         <GoogleMap
+=======
+      <div class="col-12 col-md-3" id="social-links-container"></div>
+
+      <!-- Google Map Section in Footer -->
+      <div class="map-box">
+        <GMapMap
+>>>>>>> Stashed changes
           api-key="AIzaSyCX7YZQFXhOtlyC-El4uG9baq4qSY68MZg"
           style="width: 100%; height: 100%"
           :center="center"
@@ -189,13 +243,18 @@
               title: 'Delhi, India',
             }"
           />
+<<<<<<< Updated upstream
         </GoogleMap>
+=======
+        </GMapMap>
+>>>>>>> Stashed changes
       </div>
     </footer>
   </q-page>
 </template>
 
 <script>
+<<<<<<< Updated upstream
 import { GoogleMap, Marker as GMapMarker } from "@fawmi/vue-google-maps";
 
 // import { GoogleMap, Marker as GMapMarker } from "vue3-google-map";
@@ -204,6 +263,12 @@ export default {
     GoogleMap,
     GMapMarker,
   },
+=======
+import { GMapMap, GMapMarker } from "@fawmi/vue-google-maps";
+
+// import { GMapMap, Marker as GMapMarker } from "vue3-google-map";
+export default {
+>>>>>>> Stashed changes
   data() {
     return {
       source: "",
@@ -269,6 +334,13 @@ export default {
       );
     },
   },
+<<<<<<< Updated upstream
+=======
+  components: {
+    GMapMap,
+    GMapMarker,
+  },
+>>>>>>> Stashed changes
 };
 </script>
 
