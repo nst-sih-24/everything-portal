@@ -73,7 +73,6 @@
 </template>
 
 <script>
-<<<<<<< Updated upstream
 export default {
   name: "CrewManagement",
   data() {
@@ -98,22 +97,6 @@ export default {
     editCrew(crew) {
       this.currentCrew = { ...crew };
       this.isEditing = true;
-=======
-  export default {
-    name: "ManagerA",
-    data() {
-      return {
-        employeeId: "12345", // This should be dynamically fetched after login
-        employeeName: "Sumit", // This should be dynamically fetched after login
-        crewList: [
-          { id: 1, employeeId: "1001", name: "roni", workHours: 160, restHours: 40 },
-          { id: 2, employeeId: "1002", name: "oashe", workHours: 150, restHours: 50 },
-          { id: 3, employeeId: "1003", name: "yuvraj", workHours: 170, restHours: 30 },
-        ],
-        isEditing: false,
-        currentCrew: {},
-      };
->>>>>>> Stashed changes
     },
     updateCrew() {
       const index = this.crewList.findIndex((crew) => crew.id === this.currentCrew.id);
