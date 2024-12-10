@@ -75,7 +75,7 @@
           <p>Address: DTC Headquarters, Delhi, India</p>
 
           <div class="row q-gutter-md">
-            <q-btn round flat icon="fab fa-facebook"></q-btn>
+            <q-btn round flat icon="fab fa-facebook" size="sm"></q-btn>
 
             <q-btn round flat icon="fab fa-x-twitter"></q-btn>
 

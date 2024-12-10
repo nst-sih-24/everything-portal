@@ -9,6 +9,7 @@ const routes = [
       { path: '/help&support', component: () => import('pages/HelpAndSupport.vue') },
       { path: '/login', component: () => import('pages/LoginPage.vue') },
       { path: '/homepage', component: () => import('pages/HomePage.vue') },
+      { path: '/home', component: () => import('pages/HomePageNew.vue') },
       { path: '/plannerhomepage', component: () => import('pages/planner_Home.vue')},
       { path: '/dee', component: () => import('pages/DeePage.vue') },
       { path: '/busticketbookingpage', component: () => import('pages/BusTicketBooking_3rdPage.vue')},
