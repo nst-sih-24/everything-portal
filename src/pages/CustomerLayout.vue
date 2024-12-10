@@ -1,8 +1,13 @@
 <template>
   <q-page class="body">
     <div class="top">
-      <q-img src="https://upload.wikimedia.org/wikipedia/hi/f/fb/Delhi_Transport_Corporation_logo.png" alt="Logo"
-        class="logo" height="50px" contain />
+      <q-img
+        src="https://upload.wikimedia.org/wikipedia/hi/f/fb/Delhi_Transport_Corporation_logo.png"
+        alt="Logo"
+        class="logo"
+        height="50px"
+        contain
+      />
       <div class="company-info">
         <p class="company-name">Delhi Transport Corporation</p>
         <p class="government-info">Government of NTC of Delhi</p>
@@ -53,17 +58,26 @@
     <div class="hero-image">
       <div class="search-container">
         <q-input v-model="source" label="Source" class="search-input" />
-        <q-btn flat label="Swap" @click="swapLocations" class="swap-button" />
-        <q-input v-model="destination" label="Destination" class="search-input" />
+        <q-btn flat label="Swap" class="swap-button" @click="swapLocations" />
+        <q-input
+          v-model="destination"
+          label="Destination"
+          class="search-input"
+        />
         <q-input v-model="busNumber" label="Bus no." class="search-input" />
-        <q-btn label="Search" @click="searchBus" class="search-button" />
+        <q-btn label="Search" class="search-button" @click="searchBus" />
       </div>
     </div>
 
     <!-- Popular Destinations -->
     <h2 class="pop-heading">Popular places in Delhi...</h2>
     <q-carousel control-color="primary" navigation>
-      <q-carousel-slide v-for="place in popularPlaces" :key="place.name" :name="place.name" :img-src="place.image">
+      <q-carousel-slide
+        v-for="place in popularPlaces"
+        :key="place.name"
+        :name="place.name"
+        :img-src="place.image"
+      >
         <div class="destination-text">{{ place.name }}</div>
       </q-carousel-slide>
     </q-carousel>
@@ -103,26 +117,26 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 
 const sidenavOpen = ref(false);
-const source = ref('');
-const destination = ref('');
-const busNumber = ref('');
+const source = ref("");
+const destination = ref("");
+const busNumber = ref("");
 const popularPlaces = [
   {
-    name: 'Lotus Temple',
-    image: 'https://live.staticflickr.com/1512/24704448786_1c53078fa3_b.jpg',
+    name: "Lotus Temple",
+    image: "https://live.staticflickr.com/1512/24704448786_1c53078fa3_b.jpg",
   },
   {
-    name: 'Qutub Minar',
+    name: "Qutub Minar",
     image:
-      'https://imgs.search.brave.com/Bdz-3ThM-JuUtykv2Hdo8u4yMPv5M23NpN36wh56z4g/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy8z/LzNmL1F1dHViX01p/bmFyX3dpdGhfdHdv/X2JpcmRzLmpwZw',
+      "https://imgs.search.brave.com/Bdz-3ThM-JuUtykv2Hdo8u4yMPv5M23NpN36wh56z4g/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy8z/LzNmL1F1dHViX01p/bmFyX3dpdGhfdHdv/X2JpcmRzLmpwZw",
   },
   {
-    name: 'India Gate',
+    name: "India Gate",
     image:
-      'https://t4.ftcdn.net/jpg/05/97/78/41/360_F_597784113_nKSChMeJZ6clNK29nPn07KqtEm4VOUgu.jpg',
+      "https://t4.ftcdn.net/jpg/05/97/78/41/360_F_597784113_nKSChMeJZ6clNK29nPn07KqtEm4VOUgu.jpg",
   },
 ];
 
@@ -135,15 +149,15 @@ const closeNav = () => {
 };
 
 const switchToHindi = () => {
-  console.log('Switching to Hindi');
+  console.log("Switching to Hindi");
 };
 
 const switchToEnglish = () => {
-  console.log('Switching to English');
+  console.log("Switching to English");
 };
 
 const swapLocations = () => {
-  cd
+  cd;
   const temp = source.value;
   source.value = destination.value;
   destination.value = temp;
@@ -151,15 +165,17 @@ const swapLocations = () => {
 
 const searchBus = () => {
   if (source.value && destination.value && busNumber.value) {
-    alert(`Searching for buses from ${source.value} to ${destination.value} (Bus No: ${busNumber.value})`);
+    alert(
+      `Searching for buses from ${source.value} to ${destination.value} (Bus No: ${busNumber.value})`
+    );
   } else {
-    alert('Please fill out all fields!');
+    alert("Please fill out all fields!");
   }
 };
 </script>
 <style scoped>
 .body {
-  background-image: url('@/assets/background1.png');
+  background-image: url("@/assets/background1.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -233,7 +249,7 @@ const searchBus = () => {
 }
 
 .hero-image {
-  background-image: url('https://etimg.etb2bimg.com/photo/106277723.cms');
+  background-image: url("https://etimg.etb2bimg.com/photo/106277723.cms");
   height: 400px;
   background-size: cover;
   background-position: center;
@@ -277,7 +293,7 @@ const searchBus = () => {
 .pop-heading {
   font-size: 24px;
   text-align: center;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   margin-top: 30px;
 }
 

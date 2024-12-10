@@ -5,8 +5,12 @@
       <q-card class="auth-card">
         <!-- Header Section with Background Color -->
         <q-card-section class="form-header">
-          <div class="header-animation text-h3 text-center">Welcome to NAVSMART</div>
-          <div class="sub-header-animation text-center">Your One Stop for Seamless Travel in Delhi</div>
+          <div class="header-animation text-h3 text-center">
+            Welcome to NAVSMART
+          </div>
+          <div class="sub-header-animation text-center">
+            Your One Stop for Seamless Travel in Delhi
+          </div>
         </q-card-section>
 
         <!-- Email or Phone Toggle Section -->
@@ -14,61 +18,67 @@
           <q-btn
             label="Email Login"
             color="primary"
-            @click="toggleForm('email')"
-            :class="{'active-toggle': showEmailForm}"
+            :class="{ 'active-toggle': showEmailForm }"
             class="toggle-btn"
+            @click="toggleForm('email')"
           />
           <q-btn
             label="Phone Login"
             color="secondary"
-            @click="toggleForm('phone')"
-            :class="{'active-toggle': showPhoneForm}"
+            :class="{ 'active-toggle': showPhoneForm }"
             class="toggle-btn"
+            @click="toggleForm('phone')"
           />
         </div>
 
         <!-- Email Form -->
         <div v-if="showEmailForm" class="email-form">
           <q-input
+            v-model="email"
             filled
             label="Enter your Email"
-            v-model="email"
             type="email"
-            :rules="[val => val && val.length > 0 || 'Please enter a valid email']"
+            :rules="[
+              (val) => (val && val.length > 0) || 'Please enter a valid email',
+            ]"
             class="q-mb-md"
           />
           <q-btn
             label="Sign in with Magic Link"
             color="primary"
-            @click="sendMagicLink"
             :loading="loading"
             class="full-width q-mb-md"
+            @click="sendMagicLink"
           />
           <q-btn
             label="Resend Magic Link"
             color="secondary"
-            @click="resendMagicLink"
             :loading="loading"
             class="full-width"
+            @click="resendMagicLink"
           />
         </div>
 
         <!-- Phone Form -->
         <div v-if="showPhoneForm" class="phone-form">
           <q-input
+            v-model="phone"
             filled
             label="Enter your Phone"
-            v-model="phone"
             type="tel"
-            :rules="[val => val && val.length === 13 || 'Please enter a valid phone number (with country code)']"
+            :rules="[
+              (val) =>
+                (val && val.length === 13) ||
+                'Please enter a valid phone number (with country code)',
+            ]"
             class="q-mb-md"
           />
           <q-btn
             label="Send OTP"
             color="primary"
-            @click="sendOtp"
             :loading="loading"
             class="full-width"
+            @click="sendOtp"
           />
         </div>
       </q-card>
@@ -77,21 +87,21 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { supabase } from 'boot/supabase';
+import { ref } from "vue";
+import { supabase } from "boot/supabase";
 
-const email = ref('');
-const phone = ref('');
+const email = ref("");
+const phone = ref("");
 const loading = ref(false);
-const showEmailForm = ref(true);  // Default to show email form
+const showEmailForm = ref(true); // Default to show email form
 const showPhoneForm = ref(false);
 
 // Toggle between email and phone login forms
 const toggleForm = (type) => {
-  if (type === 'email') {
+  if (type === "email") {
     showEmailForm.value = true;
     showPhoneForm.value = false;
-  } else if (type === 'phone') {
+  } else if (type === "phone") {
     showPhoneForm.value = true;
     showEmailForm.value = false;
   }
@@ -103,7 +113,7 @@ const sendMagicLink = async () => {
   try {
     const { error } = await supabase.auth.signInWithOtp({ email: email.value });
     if (error) throw error;
-    alert('Check your email for the magic link!');
+    alert("Check your email for the magic link!");
   } catch (error) {
     alert(error.message);
   } finally {
@@ -115,9 +125,11 @@ const sendMagicLink = async () => {
 const resendMagicLink = async () => {
   loading.value = true;
   try {
-    const { error } = await supabase.auth.api.resendVerificationEmail(email.value);
+    const { error } = await supabase.auth.api.resendVerificationEmail(
+      email.value
+    );
     if (error) throw error;
-    alert('Verification email has been resent!');
+    alert("Verification email has been resent!");
   } catch (error) {
     alert(error.message);
   } finally {
@@ -131,7 +143,7 @@ const sendOtp = async () => {
   try {
     const { error } = await supabase.auth.signInWithOtp({ phone: phone.value });
     if (error) throw error;
-    alert('Check your phone for the OTP!');
+    alert("Check your phone for the OTP!");
   } catch (error) {
     alert(error.message);
   } finally {
@@ -147,7 +159,7 @@ const sendOtp = async () => {
   align-items: center;
   height: 100vh;
   position: relative;
-  background: linear-gradient(135deg, #6A1B9A, #3F51B5);
+  background: linear-gradient(135deg, #6a1b9a, #3f51b5);
   overflow: hidden;
 }
 
@@ -157,7 +169,7 @@ const sendOtp = async () => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('https://www.transparenttextures.com/patterns/diamond.png');
+  background: url("https://www.transparenttextures.com/patterns/diamond.png");
   background-size: 50px;
   opacity: 0.1;
   animation: moveBackground 30s linear infinite;
@@ -191,14 +203,14 @@ const sendOtp = async () => {
   font-size: 32px;
   font-weight: 700;
   color: #ffffff;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   margin-bottom: 20px; /* Added margin to give space for subheader */
 }
 
 .sub-header-animation {
   font-size: 18px;
   color: #ff5722; /* A nice contrast color for subheader */
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   animation: fadeInSubHeader 2s ease-in-out;
 }
 
@@ -218,7 +230,7 @@ const sendOtp = async () => {
   font-size: 36px;
   color: #ffffff;
   font-weight: 700;
-  background-color: #1A237E; /* Darker background for header */
+  background-color: #1a237e; /* Darker background for header */
   padding: 20px;
   border-radius: 10px;
   animation: fadeInHeader 2s ease-in-out;
@@ -246,7 +258,7 @@ const sendOtp = async () => {
   margin: 0 10px;
   font-size: 16px;
   padding: 12px 20px;
-  border-radius: 30px;  /* Round corners for buttons */
+  border-radius: 30px; /* Round corners for buttons */
 }
 
 .active-toggle {
@@ -268,7 +280,8 @@ const sendOtp = async () => {
   background-color: #0288d1;
 }
 
-.email-form, .phone-form {
+.email-form,
+.phone-form {
   display: flex;
   flex-direction: column;
   border-radius: 10px; /* Rounded borders for the form containers */

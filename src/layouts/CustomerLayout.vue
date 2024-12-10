@@ -2,15 +2,25 @@
   <q-page>
     <!-- Hero Image Section -->
     <div class="hero-image">
-      <div class="image" v-for="(image, index) in heroImages" :key="index"
-        :style="{ backgroundImage: 'url(' + image + ')' }"></div>
+      <div
+<<<<<<< Updated upstream
+        v-for="(image, index) in heroImages"
+        :key="index"
+        class="image"
+=======
+        class="image"
+        v-for="(image, index) in heroImages"
+        :key="index"
+>>>>>>> Stashed changes
+        :style="{ backgroundImage: 'url(' + image + ')' }"
+      ></div>
       <!-- Search Form -->
       <div class="search-container">
         <q-input v-model="source" placeholder="Source" />
-        <q-btn @click="swapLocations" icon="swap_horiz" />
+        <q-btn icon="swap_horiz" @click="swapLocations" />
         <q-input v-model="destination" placeholder="Destination" />
         <q-input v-model="busNumber" placeholder="Bus no." />
-        <q-btn @click="searchBus" label="Search" class="search-btn" />
+        <q-btn label="Search" class="search-btn" @click="searchBus" />
       </div>
     </div>
 
@@ -18,8 +28,16 @@
     <div class="q-px-xl">
       <h2 class="pop-heading">Popular places in Delhi...</h2>
       <div class="row popular-destinations q-col-gutter-md">
-        <transition-group appear enter-active-class="animated slideInUp" leave-active-class="animated slideOutDown">
-          <div v-for="place in popularPlaces" :key="place.id" class="col-6 col-md-3">
+        <transition-group
+          appear
+          enter-active-class="animated slideInUp"
+          leave-active-class="animated slideOutDown"
+        >
+          <div
+            v-for="place in popularPlaces"
+            :key="place.id"
+            class="col-6 col-md-3"
+          >
             <q-card class="popular-card">
               <q-img :src="place.image" :ratio="4 / 3"></q-img>
               <q-card-section class="destination-text">
@@ -36,17 +54,24 @@
       <h2 class="news-heading">Latest News and Announcements</h2>
       <div class="news-item">
         <h3>New Bus Routes Added!</h3>
-        <p>We are excited to announce the addition of new bus routes across Delhi. Stay tuned for further updates!</p>
+        <p>
+          We are excited to announce the addition of new bus routes across
+          Delhi. Stay tuned for further updates!
+        </p>
       </div>
       <div class="news-item">
         <h3>Bus Timings Changed</h3>
-        <p>Due to road construction, some bus routes have updated timings. Check your local routes for the new
-          schedules.</p>
+        <p>
+          Due to road construction, some bus routes have updated timings. Check
+          your local routes for the new schedules.
+        </p>
       </div>
       <div class="news-item">
         <h3>Feedback Program</h3>
-        <p>Your feedback matters! We are launching a new feedback program to improve our services. Share your thoughts
-          with us!</p>
+        <p>
+          Your feedback matters! We are launching a new feedback program to
+          improve our services. Share your thoughts with us!
+        </p>
       </div>
     </div>
 
@@ -86,12 +111,16 @@
         <q-btn round flat icon="fab fa-youtube" class="social-icon" />
       </div>
 
-      <div class="col-12 col-md-3" id="social-links-container"></div>
+      <div id="social-links-container" class="col-12 col-md-3"></div>
 
       <!-- Google Map Section in Footer -->
       <div class="map-box">
-        <GoogleMap api-key="AIzaSyCX7YZQFXhOtlyC-El4uG9baq4qSY68MZg" style="width: 100%; height: 100%" :center="center"
-          :zoom="12">
+        <GoogleMap
+          api-key="AIzaSyCX7YZQFXhOtlyC-El4uG9baq4qSY68MZg"
+          style="width: 100%; height: 100%"
+          :center="center"
+          :zoom="12"
+        >
           <Marker :position="center" />
         </GoogleMap>
       </div>
@@ -103,6 +132,9 @@
 import { GoogleMap, Marker } from "vue3-google-map";
 
 export default {
+  components: {
+    GoogleMap,
+  },
   data() {
     return {
       source: "",
@@ -163,9 +195,6 @@ export default {
         this.busNumber
       );
     },
-  },
-  components: {
-    GoogleMap,
   },
 };
 </script>

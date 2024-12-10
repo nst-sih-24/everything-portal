@@ -1,5 +1,5 @@
-import { boot } from 'quasar/wrappers';
-import { session } from './supabase';
+import { boot } from "quasar/wrappers";
+import { session } from "./supabase";
 
 export default boot(({ router }) => {
   router.beforeEach((to) => {
@@ -7,7 +7,7 @@ export default boot(({ router }) => {
       // console.log('needs auth: ', to);
       if (!session.value) {
         // console.log('no session!');
-        return { name: 'auth', query: { redirect: to.fullPath } };
+        return { name: "auth", query: { redirect: to.fullPath } };
       }
     }
   });

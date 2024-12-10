@@ -1,47 +1,47 @@
 <template>
-    <!-- Crew Management Section -->
-    <div class="crew-management">
-      <h3>Manage Crew</h3>
+  <!-- Crew Management Section -->
+  <div class="crew-management">
+    <h3>Manage Crew</h3>
 
-      <!-- Filter Dropdown -->
-      <div class="q-mb-md">
-        <q-select
-          filled
-          v-model="availabilityFilter"
-          :options="filterOptions"
-          label="Filter by Availability"
-          @input="filterCrew"
-        />
-      </div>
-
-      <!-- Crew Table -->
-      <q-table
-        :rows="filteredCrewList"
-        :columns="columns"
-        row-key="id"
-        :loading="false"
-        class="q-mb-md"
-      >
-        <template v-slot:body-cell-actions="props">
-          <q-td :props="props">
-            <q-btn
-              @click.stop="editCrew(props.row)"
-              flat
-              label="Edit"
-              color="primary"
-              class="q-mr-sm rounded-full"
-            />
-            <q-btn
-              @click.stop="deleteCrew(props.row.id)"
-              flat
-              label="Delete"
-              color="negative"
-              class="rounded-full"
-            />
-          </q-td>
-        </template>
-      </q-table>
+    <!-- Filter Dropdown -->
+    <div class="q-mb-md">
+      <q-select
+        v-model="availabilityFilter"
+        filled
+        :options="filterOptions"
+        label="Filter by Availability"
+        @input="filterCrew"
+      />
     </div>
+
+    <!-- Crew Table -->
+    <q-table
+      :rows="filteredCrewList"
+      :columns="columns"
+      row-key="id"
+      :loading="false"
+      class="q-mb-md"
+    >
+      <template #body-cell-actions="props">
+        <q-td :props="props">
+          <q-btn
+            flat
+            label="Edit"
+            color="primary"
+            class="q-mr-sm rounded-full"
+            @click.stop="editCrew(props.row)"
+          />
+          <q-btn
+            flat
+            label="Delete"
+            color="negative"
+            class="rounded-full"
+            @click.stop="deleteCrew(props.row.id)"
+          />
+        </q-td>
+      </template>
+    </q-table>
+  </div>
 </template>
 
 <script>
@@ -52,26 +52,83 @@ export default {
       employeeName: "Sumit", // Replace with dynamic data
       availabilityFilter: "all", // filter options: all, available, not-available
       crewList: [
-        { id: 1, employeeId: "001", name: "Sumit", crewType: "Driver", status: "Available", remainingHours: 40 },
-        { id: 2, employeeId: "002", name: "Oats", crewType: "Conductor", status: "Not Available", remainingHours: 30 },
-        { id: 3, employeeId: "003", name: "Roni", crewType: "Driver", status: "Available", remainingHours: 35 },
-        { id: 4, employeeId: "004", name: "Deep", crewType: "Conductor", status: "Not Available", remainingHours: 25 },
-        { id: 5, employeeId: "005", name: "Yuvraj", crewType: "Conductor", status: "Available", remainingHours: 29 },
-        { id: 6, employeeId: "006", name: "Arohi", crewType: "Driver", status: "Not Available", remainingHours: 32 },
+        {
+          id: 1,
+          employeeId: "001",
+          name: "Sumit",
+          crewType: "Driver",
+          status: "Available",
+          remainingHours: 40,
+        },
+        {
+          id: 2,
+          employeeId: "002",
+          name: "Oats",
+          crewType: "Conductor",
+          status: "Not Available",
+          remainingHours: 30,
+        },
+        {
+          id: 3,
+          employeeId: "003",
+          name: "Roni",
+          crewType: "Driver",
+          status: "Available",
+          remainingHours: 35,
+        },
+        {
+          id: 4,
+          employeeId: "004",
+          name: "Deep",
+          crewType: "Conductor",
+          status: "Not Available",
+          remainingHours: 25,
+        },
+        {
+          id: 5,
+          employeeId: "005",
+          name: "Yuvraj",
+          crewType: "Conductor",
+          status: "Available",
+          remainingHours: 29,
+        },
+        {
+          id: 6,
+          employeeId: "006",
+          name: "Arohi",
+          crewType: "Driver",
+          status: "Not Available",
+          remainingHours: 32,
+        },
       ],
       filteredCrewList: [], // Store the filtered crew list
       filterOptions: [
-        { label: 'All', value: 'all' },
-        { label: 'Available', value: 'available' },
-        { label: 'Not Available', value: 'not-available' },
+        { label: "All", value: "all" },
+        { label: "Available", value: "available" },
+        { label: "Not Available", value: "not-available" },
       ],
       columns: [
-        { name: 'employeeId', label: 'Employee ID', align: 'left', field: 'employeeId' },
-        { name: 'name', label: 'Name', align: 'left', field: 'name' },
-        { name: 'crewType', label: 'Crew Type', align: 'left', field: 'crewType' },
-        { name: 'status', label: 'Status', align: 'center', field: 'status' },
-        { name: 'remainingHours', label: 'Remaining Working Hours', align: 'center', field: 'remainingHours' },
-        { name: 'actions', label: 'Actions', align: 'center' },
+        {
+          name: "employeeId",
+          label: "Employee ID",
+          align: "left",
+          field: "employeeId",
+        },
+        { name: "name", label: "Name", align: "left", field: "name" },
+        {
+          name: "crewType",
+          label: "Crew Type",
+          align: "left",
+          field: "crewType",
+        },
+        { name: "status", label: "Status", align: "center", field: "status" },
+        {
+          name: "remainingHours",
+          label: "Remaining Working Hours",
+          align: "center",
+          field: "remainingHours",
+        },
+        { name: "actions", label: "Actions", align: "center" },
       ],
     };
   },
@@ -81,27 +138,29 @@ export default {
       this.filterCrew();
     },
   },
+  mounted() {
+    this.filterCrew(); // Initialize the filtered list on mount
+  },
   methods: {
     // Filter crew list based on the selected filter
     filterCrew() {
-      if (this.availabilityFilter === 'all') {
+      if (this.availabilityFilter === "all") {
         this.filteredCrewList = this.crewList;
       } else {
-        this.filteredCrewList = this.crewList.filter(crew => crew.status.toLowerCase() === this.availabilityFilter);
+        this.filteredCrewList = this.crewList.filter(
+          (crew) => crew.status.toLowerCase() === this.availabilityFilter
+        );
       }
     },
     editCrew(crew) {
-      console.log('Editing crew:', crew);
+      console.log("Editing crew:", crew);
       // Add your edit logic here (e.g., show a modal to update crew details)
     },
     deleteCrew(crewId) {
-      this.crewList = this.crewList.filter(crew => crew.id !== crewId);
+      this.crewList = this.crewList.filter((crew) => crew.id !== crewId);
       this.filterCrew(); // Reapply the filter after deletion
-      console.log('Deleted crew with ID:', crewId);
+      console.log("Deleted crew with ID:", crewId);
     },
-  },
-  mounted() {
-    this.filterCrew(); // Initialize the filtered list on mount
   },
 };
 </script>

@@ -1,4 +1,5 @@
 <template>
+  <!-- <q-page> -->
   <q-page class="q-pa-none">
     <!-- Hero Image Section -->
     <div class="hero-image">
@@ -8,99 +9,64 @@
         class="image"
         :style="{ backgroundImage: 'url(' + image + ')' }"
       ></div>
-
       <!-- Search Form -->
-      <q-card>
-        <q-item>
-          <q-item-section>
-            <q-input v-model="source" outlined dense placeholder="Source" />
-          </q-item-section>
-          <q-item-section side style="padding: 0">
-            <q-btn flat round icon="swap_horiz" @click="swapLocations" />
-          </q-item-section>
-          <q-item-section>
-            <q-input
-              v-model="destination"
-              outlined
-              dense
-              placeholder="Destination"
-            />
-          </q-item-section>
-          <q-item-section>
-            <q-input v-model="busNumber" outlined dense placeholder="Bus no." />
-          </q-item-section>
-          <q-item-section>
-            <q-btn label="Search" class="search-btn" @click="searchBus" />
-          </q-item-section>
-        </q-item>
-      </q-card>
-    </div>
-    <div class="hero-image q-py-xl">
-      <div class="row justify-center q-py-xl q-my-xl">
-        <div class="col-10 col-md-6">
-          class="image" v-for="(image, index) in heroImages" :key="index"
-          :style="{ backgroundImage: 'url(' + image + ')' }" >
-        </div>
-        <!-- Search Form -->
-        <div class="search-container">
-          <q-input v-model="source" placeholder="Source" />
-          <q-btn icon="swap_horiz" @click="swapLocations" />
-          <q-input v-model="destination" placeholder="Destination" />
-          <q-input v-model="busNumber" placeholder="Bus no." />
-          <q-btn label="Search" class="search-btn" @click="searchBus" />
-          <div class="hero-image q-py-xl">
-            <div class="row justify-center q-py-xl q-my-xl">
-              <div class="col-10 col-md-6">
-                <q-card>
-                  <q-item>
-                    <q-item-section>
-                      <q-input
-                        v-model="source"
-                        outlined
-                        dense
-                        placeholder="Source"
-                      />
-                    </q-item-section>
-                    <q-item-section side style="padding: 0">
-                      <q-btn
-                        flat
-                        round
-                        icon="swap_horiz"
-                        @click="swapLocations"
-                      />
-                    </q-item-section>
-                    <q-item-section>
-                      <q-input
-                        v-model="destination"
-                        outlined
-                        dense
-                        placeholder="Destination"
-                      />
-                    </q-item-section>
-                    <q-item-section>
-                      <q-input
-                        v-model="busNumber"
-                        outlined
-                        dense
-                        placeholder="Bus no."
-                      />
-                    </q-item-section>
-                    <q-item-section>
-                      <q-btn
-                        label="Search"
-                        class="search-btn"
-                        @click="searchBus"
-                      />
-                    </q-item-section>
-                  </q-item> </q-card
-                >``
-              </div>
+      <div class="search-container">
+        <q-input v-model="source" placeholder="Source" />
+        <q-btn icon="swap_horiz" @click="swapLocations" />
+        <q-input v-model="destination" placeholder="Destination" />
+        <q-input v-model="busNumber" placeholder="Bus no." />
+        <q-btn label="Search" class="search-btn" @click="searchBus" />
+        <div class="hero-image q-py-xl">
+          <div class="row justify-center q-py-xl q-my-xl">
+            <div class="col-10 col-md-6">
+              <q-card>
+                <q-item>
+                  <q-item-section>
+                    <q-input
+                      v-model="source"
+                      outlined
+                      dense
+                      placeholder="Source"
+                    />
+                  </q-item-section>
+                  <q-item-section side style="padding: 0">
+                    <q-btn
+                      flat
+                      round
+                      icon="swap_horiz"
+                      @click="swapLocations"
+                    />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-input
+                      v-model="destination"
+                      outlined
+                      dense
+                      placeholder="Destination"
+                    />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-input
+                      v-model="busNumber"
+                      outlined
+                      dense
+                      placeholder="Bus no."
+                    />
+                  </q-item-section>
+                  <q-item-section>
+                    <q-btn
+                      label="Search"
+                      class="search-btn"
+                      @click="searchBus"
+                    />
+                  </q-item-section>
+                </q-item>
+              </q-card>
             </div>
           </div>
         </div>
       </div>
     </div>
-    Ï
 
     <!-- Popular Destinations Section -->
     <div class="q-px-xl">
@@ -201,6 +167,8 @@
         <q-btn round flat icon="fab fa-youtube" class="social-icon" />
       </div>
 
+      <div id="social-links-container" class="col-12 col-md-3"></div>
+
       <!-- Google Map Section in Footer -->
       <div class="map-box">
         <GoogleMap
@@ -215,6 +183,12 @@
               title: 'Delhi, India',
             }"
           />
+          <GMapMarker
+            :options="{
+              position: center,
+              title: 'Delhi, India',
+            }"
+          />
         </GoogleMap>
       </div>
     </footer>
@@ -222,14 +196,14 @@
 </template>
 
 <script>
-import { GoogleMap, Marker as GMapMarker } from "vue3-google-map";
+// import { GoogleMap, Marker as GMapMarker } from '@fawmi/vue-google-maps';
 
+import { GoogleMap, Marker as GMapMarker } from "vue3-google-map";
 export default {
   components: {
     GoogleMap,
     GMapMarker,
   },
-
   data() {
     return {
       source: "",
@@ -239,7 +213,6 @@ export default {
         lat: 28.6139,
         lng: 77.209,
       },
-
       heroImages: [
         "https://etimg.etb2bimg.com/photo/106277723.cms",
         "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/DTC_AC_Bus.jpg/2560px-DTC_AC_Bus.jpg",

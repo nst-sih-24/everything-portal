@@ -3,10 +3,10 @@
     <div class="hero-image">
       <div class="search-container">
         <q-input v-model="source" placeholder="Source" />
-        <q-btn @click="swapLocations" icon="swap_horiz" />
+        <q-btn icon="swap_horiz" @click="swapLocations" />
         <q-input v-model="destination" placeholder="Destination" />
         <q-input v-model="busNumber" placeholder="Bus no." />
-        <q-btn @click="searchBus" label="Search" />
+        <q-btn label="Search" @click="searchBus" />
       </div>
     </div>
 

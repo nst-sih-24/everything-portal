@@ -27,15 +27,15 @@
           flat
           stretch
           color="primary"
-          @click="switchToHindi"
           label="हिन्दी"
+          @click="switchToHindi"
         />
         <q-btn
           flat
           stretch
           color="primary"
-          @click="switchToEnglish"
           label="English"
+          @click="switchToEnglish"
         />
         <q-btn flat stretch color="primary" label="Passenger" />
         <q-btn flat stretch color="primary" label="Administrator" />
@@ -87,7 +87,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-md-3" id="social-links-container">
+        <div id="social-links-container" class="col-12 col-md-3">
           <div class="map-container">
             <div id="map"></div>
           </div>

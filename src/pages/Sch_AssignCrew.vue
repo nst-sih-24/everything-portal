@@ -66,30 +66,30 @@
 
             <td>
               <input
-                type="text"
                 v-model="selectedSource"
-                class="select-input"
-              />
-            </td>
-
-            <td>
-              <input
                 type="text"
-                v-model="selectedDestination"
                 class="select-input"
               />
             </td>
 
             <td>
               <input
-                type="datetime-local"
-                v-model="selectedSchedule"
+                v-model="selectedDestination"
+                type="text"
                 class="select-input"
               />
             </td>
 
             <td>
-              <button @click="assignCrew" class="btn-assign">
+              <input
+                v-model="selectedSchedule"
+                type="datetime-local"
+                class="select-input"
+              />
+            </td>
+
+            <td>
+              <button class="btn-assign" @click="assignCrew">
                 Assign Crew
               </button>
             </td>
@@ -105,12 +105,12 @@
             <td>{{ assignment.destination }}</td>
             <td>{{ assignment.schedule }}</td>
             <td>
-              <button @click="openEditDialog(assignment)" class="btn-edit">
+              <button class="btn-edit" @click="openEditDialog(assignment)">
                 Edit
               </button>
               <button
-                @click="openDeleteDialog(assignment.id)"
                 class="btn-delete"
+                @click="openDeleteDialog(assignment.id)"
               >
                 Delete
               </button>
@@ -172,21 +172,21 @@
             </div>
             <div class="col-12">
               <label>Source</label>
-              <input type="text" v-model="editSource" class="select-input" />
+              <input v-model="editSource" type="text" class="select-input" />
             </div>
             <div class="col-12">
               <label>Destination</label>
               <input
-                type="text"
                 v-model="editDestination"
+                type="text"
                 class="select-input"
               />
             </div>
             <div class="col-12">
               <label>Schedule</label>
               <input
-                type="datetime-local"
                 v-model="editSchedule"
+                type="datetime-local"
                 class="select-input"
               />
             </div>
@@ -431,7 +431,8 @@ table {
   margin-bottom: 20px;
 }
 
-table th, table td {
+table th,
+table td {
   padding: 12px;
   text-align: left;
   border: 1px solid #ddd;
@@ -461,7 +462,9 @@ table .select-input {
 }
 
 /* Button Styles */
-.btn-assign, .btn-edit, .btn-delete {
+.btn-assign,
+.btn-edit,
+.btn-delete {
   padding: 8px 16px;
   font-size: 14px;
   border-radius: 6px;
@@ -469,7 +472,7 @@ table .select-input {
 }
 
 .btn-assign {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
 }
@@ -520,7 +523,7 @@ table .select-input {
 }
 
 .q-btn-primary {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 
@@ -567,7 +570,9 @@ input.select-input {
     font-size: 12px;
   }
 
-  .btn-assign, .btn-edit, .btn-delete {
+  .btn-assign,
+  .btn-edit,
+  .btn-delete {
     padding: 6px 12px;
     font-size: 12px;
   }
