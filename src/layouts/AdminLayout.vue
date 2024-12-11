@@ -1,0 +1,123 @@
+<template>
+  <q-layout view="lHh Lpr lFf">
+    <q-header elevated>
+      <q-toolbar class="bg-white">
+        <q-toolbar-title>
+          <q-item>
+            <q-item-section avatar>
+              <q-img
+                src="https://upload.wikimedia.org/wikipedia/hi/f/fb/Delhi_Transport_Corporation_logo.png"
+              >
+              </q-img>
+            </q-item-section>
+            <q-item-section>
+              <div class="text-h6 text-primary">
+                दिल्ली परिवहन निगम
+              </div>
+              <div class="text-caption text-primary">
+                दिल्ली एनटीसी सरकार
+              </div>
+            </q-item-section>
+          </q-item>
+
+          <!-- <img  alt="Logo" style="height: 50px;"/> -->
+        </q-toolbar-title>
+
+        <q-btn
+          flat
+          stretch
+          color="primary"
+          label="हिन्दी"
+          @click="switchToHindi"
+        />
+        <q-btn
+          flat
+          stretch
+          color="primary"
+          label="English"
+          @click="switchToEnglish"
+        />
+        <q-btn flat stretch color="primary" label="यात्री" />
+        <q-btn flat stretch color="primary" label="प्रशासक" />
+      </q-toolbar>
+    </q-header>
+
+    <q-page-container>
+      <router-view />
+    </q-page-container>
+
+    <div class="page-footer bg-grey-3 q-py-md">
+      <div class="row">
+        <div class="col-12 col-md-3">
+          <p>
+            <router-link to="Contact us"> हमसे संपर्क करें</router-link>
+          </p>
+          <p>
+            <router-link to="Helpline No."> हेल्पलाइन </router-link>
+          </p>
+          <p>
+            <router-link to="About Us"> हमारे बारे में </router-link>
+          </p>
+          <p>
+            <router-link to="Home"> घर </router-link>
+          </p>
+          <p>
+            <router-link to="Feedback"> प्रतिक्रिया </router-link>
+          </p>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="text-h6">हमसे संपर्क करें</div>
+
+          <p>फ़ोन: +91 123 456 7890</p>
+
+          <p>ईमेल: support@dtc.gov.in</p>
+
+          <p>पता: डीटीसी मुख्यालय, दिल्ली, भारत</p>
+
+          <div class="row q-gutter-md">
+            <q-btn round flat icon="fab fa-facebook" size="sm"></q-btn>
+
+            <q-btn round flat icon="fab fa-x-twitter"></q-btn>
+
+            <q-btn round flat icon="fab fa-instagram"></q-btn>
+
+            <q-btn round flat icon="fab fa-linkedin"></q-btn>
+
+            <q-btn round flat icon="fab fa-youtube"></q-btn>
+          </div>
+        </div>
+
+        <div id="social-links-container" class="col-12 col-md-3">
+          <div class="map-container">
+            <div id="map"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="map-container"></div>
+
+    <q-page-sticky position="bottom-right" :offset="[18, 18]">
+      <ChatbotWindow />
+    </q-page-sticky>
+  </q-layout>
+</template>
+
+<script>
+import { defineComponent } from "vue";
+import ChatbotWindow from "src/components/ChatbotWindow.vue";
+
+export default defineComponent({
+  components: {
+    ChatbotWindow,
+  },
+  methods: {
+    switchToHindi() {
+      console.log("Switching to Hindi");
+    },
+    switchToEnglish() {
+      console.log("Switching to English");
+    },
+  },
+});
+</script>
+

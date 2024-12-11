@@ -6,6 +6,9 @@ const routes = [
     children: [
       { path: "/aboutus", component: () => import("pages/AboutUs.vue") },
       { path: "/feedback", component: () => import("src/pages/FeedBack.vue") },
+      { path: "/freshfinal", component: () => import("src/pages/FreshFinal.vue") },
+      { path: "/authpage", component: () => import("src/pages/AuthPage.vue") },
+
       {
         path: "/help&support",
         component: () => import("pages/HelpAndSupport.vue"),
@@ -116,6 +119,11 @@ const routes = [
         component: () => import("pages/PaymentGateway.vue"),
       },
     ],
+    path: "/",
+    // component: () => import('layouts/MainLayout.vue'),
+    component: () => import("src/layouts/AdminLayout.vue"),
+    children: [
+      { path: "/hindipage", component: () => import("src/pages/HindiPage.vue") },]
   },
 
   // Always leave this as last one,
@@ -124,6 +132,7 @@ const routes = [
   {
     path: "/:catchAll(.*)*",
     component: () => import("pages/ErrorNotFound.vue"),
+
   },
 ];
 
