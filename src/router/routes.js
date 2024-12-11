@@ -5,23 +5,23 @@ const routes = [
     component: () => import("src/layouts/EnglishLayout.vue"),
     children: [
       { path: "", component: () => import("src/pages/HomePage_English.vue") },
-      { path: "/about", component: () => import("src/pages/AboutPage.vue") },
+      { path: "about", component: () => import("src/pages/AboutPage.vue") },
       {
-        path: "/feedback",
+        path: "feedback",
         component: () => import("src/pages/FeedbackPage.vue"),
       },
-      { path: "/authpage", component: () => import("src/pages/AuthPage.vue") },
+      { path: "auth", component: () => import("src/pages/AuthPage.vue") },
       {
-        path: "/Paymentpage",
-        component: () => import("pages/PaymentPage.vue"),
-      },
-      {
-        path: "/paymentgateway",
-        component: () => import("pages/PaymentGateway.vue"),
-      },
-      {
-        path: "/ticket",
+        path: "ticket",
         component: () => import("src/pages/TicketBookingPage.vue"),
+      },
+      {
+        path: "/ticket/payment/gateway",
+        component: () => import("src/pages/PaymentGatewayPage.vue"),
+      },
+      {
+        path: "ticket/payment",
+        component: () => import("pages/PaymentPage.vue"),
       },
     ],
   },
