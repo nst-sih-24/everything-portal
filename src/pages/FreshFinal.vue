@@ -1,6 +1,5 @@
 <template>
-  <q-page class="q-pa-none">
-    <!-- Hero Image Section -->
+    <q-page class="q-pa-none">
     <div class="hero-image">
       <div
         class="image"
@@ -35,8 +34,28 @@
         </q-item>
       </q-card>
     </div>
-  </q-page>
-  <footer class="footer-container">
+    <!-- Popular Destination Section with 4 Divs -->
+    <div class="popular-destinations q-pa-md" style="min-height: 250px;">
+      <span class="text-white" v-scroll-fire="bounceImage">trigger</span>
+      <div class="row q-col-gutter-md" v-if="showItems">
+        <div
+          v-for="(item, index) in destinationItems"
+          :key="index"
+          class="col-3 destination-item"
+          ref="destinationDivs"
+          :class="{
+            'fade-up': index % 2 == 0,
+            'fade-down': index % 2 != 0,
+          }"
+        >
+          <div>
+            <img :src="item.image" alt="destination" class="image-container" />
+          </div>
+          <div class="name">{{ item.name }}</div>
+        </div>
+      </div>
+    </div>
+    <footer class="footer-container">
       <div class="contact-us">
         <h3 class="quick">Quick links</h3>
         <p>
@@ -89,10 +108,13 @@
         <q-btn round flat icon="fab fa-linkedin" class="social-icon" size="md"/>
         <q-btn round flat icon="fab fa-youtube" class="social-icon" size="md"/>
       </div>
+  </q-page>
 </template>
+
 <script>
-import { GoogleMap, Marker as GMapMarker } from "vue3-google-map";
-export default {
+import { defineComponent } from "vue";
+
+export default defineComponent({
   data() {
     return {
       source: "",
@@ -100,32 +122,32 @@ export default {
       busNumber: "",
       center: { lat: 18.621407276412643, lng:  73.91214447495325 },
       heroImages: ["src/assets/images/popular/lotus.jpg"],
+      destinationItems: [
+        {
+          image: "src/assets/images/popular/indiagate.jpg",
+          name: "INDIA GATE",
+        },
+        { image: "src/assets/images/popular/lotus.jpg", name: "LOTUS TEMPLE" },
+        { image: "src/assets/images/popular/qutub.jpg", name: "QUTUB MINAR" },
+        { image: "src/assets/images/popular/redfort.jpeg", name: "RED FORT" },
+      ],
+      activeClass: [],
+      showItems: false,
     };
   },
-  mounted() {},
+
   methods: {
-    swapLocations() {
-      let temp = this.source;
-      this.source = this.destination;
-      this.destination = temp;
-    },
-    searchBus() {
-      console.log(
-        "Searching buses from",
-        this.source,
-        "to",
-        this.destination,
-        "Bus Number:",
-        this.busNumber
-      );
+    bounceImage() {
+      console.log("firing on scroll");
+      const that = this;
+      setTimeout(() => {
+        that.showItems = true;
+      }, 500); // delay 500 ms to begin animation
     },
   },
-  components: {
-    GoogleMap,
-    GMapMarker,
-  },
-};
+});
 </script>
+
 <style scoped>
 .hero-image {
   position: relative;
@@ -152,6 +174,65 @@ export default {
 .search-btn {
   background-color: #78B3CE;
   color: white;
+}
+.destination-item {
+  text-align: center;
+}
+
+.destination-item img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.name {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Fade Down Animation */
+.fade-down {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade Up Animation */
+.fade-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Make sure the divs start off-screen to create the fade effect */
+.fade-down {
+  animation: fadeDown 1s ease-out forwards;
+}
+
+.fade-up {
+  animation: fadeUp 1s ease-out forwards;
+}
+
+@keyframes fadeDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .footer-container {
   display: flex;
@@ -197,3 +278,4 @@ export default {
   text-decoration: none;
 }
 </style>
+
