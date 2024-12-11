@@ -1,5 +1,5 @@
 <template>
-    <q-page class="q-pa-none">
+  <q-page class="q-pa-none">
     <div class="hero-image">
       <div
         class="image"
@@ -35,7 +35,7 @@
       </q-card>
     </div>
     <!-- Popular Destination Section with 4 Divs -->
-    <div class="popular-destinations q-pa-md" style="min-height: 250px;">
+    <div class="popular-destinations q-pa-md" style="min-height: 250px">
       <span class="text-white" v-scroll-fire="bounceImage">trigger</span>
       <div class="row q-col-gutter-md" v-if="showItems">
         <div
@@ -55,59 +55,6 @@
         </div>
       </div>
     </div>
-    <footer class="footer-container">
-      <div class="contact-us">
-        <h3 class="quick">Quick links</h3>
-        <p>
-          <router-link to="Helpline No."> Helpline </router-link>
-        </p>
-        <p>
-          <router-link to="About Us"> About Us </router-link>
-        </p>
-        <p>
-          <router-link to="Privacy Policy">Privacy Policy</router-link>
-        </p>
-        <p>
-          <router-link to="Home"> Home </router-link>
-        </p>
-        <p>
-          <router-link to="Feedback"> Feedback </router-link>
-        </p>
-      </div>
-
-      <div class="contact-info">
-        <h3>Contact Us</h3>
-        <p>For inquiries, reach us at:</p>
-        <p>Email: contact@dtc.com</p>
-        <p>Phone: +91 123 456 7890</p>
-      </div>
-
-      <div class="col-12 col-md-3" id="social-links-container"></div>
-
-      <!-- Google Map Section in Footer -->
-      <div class="map-box">
-        <GoogleMap
-          api-key="AIzaSyCX7YZQFXhOtlyC-El4uG9baq4qSY68MZg"
-          style="width: 100%; height: 100%"
-          :center="center"
-          :zoom="17"
-        >
-          <GMapMarker
-            :options="{
-              position: center,
-              title: 'Delhi, India',
-            }"
-          />
-        </GoogleMap>
-      </div>
-    </footer>
-    <div class="social-media">
-        <q-btn round flat icon="fab fa-facebook" class="social-icon" size="md" />
-        <q-btn round flat icon="fab fa-x-twitter" class="social-icon" size="md"/>
-        <q-btn round flat icon="fab fa-instagram" class="social-icon" size="md"/>
-        <q-btn round flat icon="fab fa-linkedin" class="social-icon" size="md"/>
-        <q-btn round flat icon="fab fa-youtube" class="social-icon" size="md"/>
-      </div>
   </q-page>
 </template>
 
@@ -120,16 +67,16 @@ export default defineComponent({
       source: "",
       destination: "",
       busNumber: "",
-      center: { lat: 18.621407276412643, lng:  73.91214447495325 },
-      heroImages: ["src/assets/images/popular/lotus.jpg"],
+      center: { lat: 18.621407276412643, lng: 73.91214447495325 },
+      heroImages: ["src/assets/popular/lotus.jpg"],
       destinationItems: [
         {
-          image: "src/assets/images/popular/indiagate.jpg",
+          image: "src/assets/popular/indiagate.jpg",
           name: "INDIA GATE",
         },
-        { image: "src/assets/images/popular/lotus.jpg", name: "LOTUS TEMPLE" },
-        { image: "src/assets/images/popular/qutub.jpg", name: "QUTUB MINAR" },
-        { image: "src/assets/images/popular/redfort.jpeg", name: "RED FORT" },
+        { image: "src/assets/popular/lotus.jpg", name: "LOTUS TEMPLE" },
+        { image: "src/assets/popular/qutub.jpg", name: "QUTUB MINAR" },
+        { image: "src/assets/popular/redfort.jpeg", name: "RED FORT" },
       ],
       activeClass: [],
       showItems: false,
@@ -168,11 +115,11 @@ export default defineComponent({
   transform: translate(-50%, -50%);
   display: flex;
   gap: 20px;
-  border-left: 10px solid #78B3CE;
+  border-left: 10px solid #78b3ce;
   border-radius: 10px;
 }
 .search-btn {
-  background-color: #78B3CE;
+  background-color: #78b3ce;
   color: white;
 }
 .destination-item {
@@ -239,11 +186,12 @@ export default defineComponent({
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 30px;
-  background-color:#F96E2A;
+  background-color: #f96e2a;
   color: white;
   margin-top: 50px;
 }
-.contact-us,.contact-info {
+.contact-us,
+.contact-info {
   flex: 1;
   padding: 20px;
 }
@@ -253,7 +201,7 @@ export default defineComponent({
   background-color: #f95e2a;
   justify-content: center;
   gap: 10px;
-  margin-top:0;
+  margin-top: 0;
   font-size: small;
 }
 .social-icon {
@@ -274,8 +222,7 @@ export default defineComponent({
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease;
 }
-.contact-us .quick{
+.contact-us .quick {
   text-decoration: none;
 }
 </style>
-

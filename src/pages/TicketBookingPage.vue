@@ -1,6 +1,6 @@
 <template>
   <q-page>
-    <h1>TIcket book krle bhadwe</h1>
+    <h1>Ticket</h1>
     <div class="q-pa-md">
       <q-card>
         <q-card-section>
