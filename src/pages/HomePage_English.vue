@@ -18,30 +18,27 @@
             <q-btn flat round @click="swapLocations" icon="swap_horiz" />
           </q-item-section>
           <q-item-section>
-            <q-input
-              outlined
-              dense
-              v-model="destination"
-              placeholder="Destination"
-            />
+            <q-input outlined dense v-model="destination" placeholder="Destination" />
           </q-item-section>
           <q-item-section>
             <q-input outlined dense v-model="busNumber" placeholder="Bus no." />
           </q-item-section>
           <q-item-section>
-            <q-btn @click="searchBus" label="Search" class="search-btn" />
+            <q-btn outlined dense to="ticket"  label="Search" class="search-btn" />
           </q-item-section>
         </q-item>
       </q-card>
     </div>
-    <!-- Popular Destination Section with 4 Divs -->
+    <div class="typing-animation">
+      <span ref="typingText"></span>
+    </div>
     <div class="popular-destinations q-pa-md" style="min-height: 250px">
       <span class="text-white" v-scroll-fire="bounceImage">trigger</span>
       <div class="row q-col-gutter-md" v-if="showItems">
         <div
           v-for="(item, index) in destinationItems"
           :key="index"
-          class="col-3 destination-item"
+          class="col-xs-12 col-sm-6 col-md-3 destination-item"
           ref="destinationDivs"
           :class="{
             'fade-up': index % 2 == 0,
@@ -59,10 +56,33 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
+import Typewriter from "typewriter-effect/dist/core";
 
 export default defineComponent({
-  data() {
+  setup() {
+    const typingText = ref(null);
+
+    onMounted(() => {
+      new Typewriter(typingText.value, {
+        loop: true,
+      })
+        .typeString("Find your bus route easily")
+        .pauseFor(2000)
+        .deleteAll()
+        .typeString("Explore destinations")
+        .pauseFor(2000)
+        .deleteAll()
+        .typeString("Plan your trip with ease")
+        .pauseFor(2000)
+        .start();
+    });
+    return {
+      typingText,
+    };
+  },
+
+  data(){
     return {
       source: "",
       destination: "",
@@ -91,6 +111,11 @@ export default defineComponent({
         that.showItems = true;
       }, 500); // delay 500 ms to begin animation
     },
+    swapLocations() {
+      const realsource = this.source;
+      this.source = this.destination;
+      this.destination = realsource;
+    },
   },
 });
 </script>
@@ -99,7 +124,8 @@ export default defineComponent({
 .hero-image {
   position: relative;
   width: 100%;
-  height: 300px;
+  height: 100%;
+  height: 400px;
   overflow: hidden;
 }
 .image {
@@ -115,8 +141,12 @@ export default defineComponent({
   transform: translate(-50%, -50%);
   display: flex;
   gap: 20px;
-  border-left: 10px solid #78b3ce;
   border-radius: 10px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 800px;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 .search-btn {
   background-color: #78b3ce;
@@ -128,14 +158,14 @@ export default defineComponent({
 
 .destination-item img {
   width: 100%;
-  height: 150px;
+  height: 350px;
   object-fit: cover;
   border-radius: 10px;
 }
 
 .name {
   margin-top: 10px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
 }
 
@@ -224,5 +254,43 @@ export default defineComponent({
 }
 .contact-us .quick {
   text-decoration: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .search-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .destination-item img {
+    width: 100%;
+  }
+
+  .name {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-container {
+    gap: 10px;
+  }
+
+  .destination-item img {
+    width: 100%;
+  }
+
+  .name {
+    font-size: 12px;
+  }
+}
+/* Styling for the typing animation */
+.typing-animation {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 60px;
+  color: #074a69;
 }
 </style>

@@ -59,7 +59,7 @@ import { GoogleMap } from "vue3-google-map";
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 30px;
-  background-color: #f96e2a;
+  background-color:  rgba(4, 9, 83, 0.928);
   color: white;
   margin-top: 50px;
 }
@@ -71,7 +71,7 @@ import { GoogleMap } from "vue3-google-map";
 .social-media {
   flex: 1;
   display: flex;
-  background-color: #f95e2a;
+  background-color: rgba(24, 33, 160, 0.928);
   justify-content: center;
   gap: 10px;
   margin-top: 0;

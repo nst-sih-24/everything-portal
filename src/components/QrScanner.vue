@@ -1,5 +1,5 @@
 <template>
-  <q-page-sticky position="bottom-right" :offset="[18, 18]">
+  <q-page-sticky position="bottom-left" :offset="[18, 18]">
     <q-btn
       fab
       icon="qr_code_scanner"
