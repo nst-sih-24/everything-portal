@@ -1,52 +1,10 @@
 <template>
   <q-page class="q-pa-md about-us-page">
     <q-card flat bordered class="about-us-card animate__animated animate__fadeIn">
-
       <q-card-section class="title-section">
         <h1 class="animate__animated animate__zoomIn">About Byte Knight</h1>
       </q-card-section>
 
-      <q-card-section class="vision-mission-section animate__animated animate__fadeInUp animate__delay-1s">
-        <h2>Vision & Mission</h2>
-        <p>
-          At Byte Knight, we envision a future where technology seamlessly integrates into every aspect of life, empowering individuals and organizations to achieve their goals. Our mission is to deliver innovative, user-centric solutions in web development, AI integration, and software engineering, ensuring excellence and scalability.
-        </p>
-      </q-card-section>
-
-      <q-card-section class="history-section animate__animated animate__fadeInUp animate__delay-2s">
-        <h2>Our Journey</h2>
-        <p>
-          We are Byte Knightz, a passionate group of 5–6 tech enthusiasts dedicated to solving real-world challenges through innovative solutions. Our current mission is to build an automated scheduling and route management system for DTC (Delhi Transport Corporation).
-
-          Our solution is designed to streamline and optimize DTC's operations, enhancing efficiency, reducing costs, and improving commuter satisfaction. By leveraging technologies like Artificial Intelligence, GIS, and real-time traffic data, we aim to provide a comprehensive tool that simplifies route planning and crew scheduling.
-
-          Byte Knightz stands for collaboration, innovation, and excellence. With a shared vision of using technology to create meaningful impact, we strive to deliver solutions that set new standards in transportation management.
-        </p>
-      </q-card-section>
-
-      <q-card-section class="services-section animate__animated animate__fadeInUp animate__delay-3s">
-        <h2>Services</h2>
-        <q-list bordered>
-          <q-item>
-            <q-item-section avatar>
-              <q-icon name="code" color="primary" size="2rem" />
-            </q-item-section>
-            <q-item-section>
-              <b>Web Development:</b> High-quality, responsive websites tailored to your needs.
-            </q-item-section>
-          </q-item>
-          <q-item>
-            <q-item-section avatar>
-              <q-icon name="ai" color="primary" size="2rem" />
-            </q-item-section>
-            <q-item-section>
-              <b>AI Integration:</b> Cutting-edge AI solutions for smarter decision-making.
-            </q-item-section>
-          </q-item>
-        </q-list>
-      </q-card-section>
-
-      <!-- Team Members Section -->
       <q-card-section class="team-section animate__animated animate__fadeInUp animate__delay-4s">
         <h2>Our Team</h2>
         <div class="team-grid">
@@ -57,6 +15,28 @@
           </div>
         </div>
       </q-card-section>
+
+      <q-card-section class="title-section">
+        <h1 class="animate__animated animate__zoomIn">About Byte Knight</h1>
+      </q-card-section>
+
+      <q-card-section class="vision-mission-section animate__animated animate__fadeInUp animate__delay-1s">
+        <h2>Problem-statement</h2>
+        <p> Automated bus scheduling and route management system for Delhi transport corporation
+        </p>
+      </q-card-section>
+
+      <q-card-section class="history-section animate__animated animate__fadeInUp animate__delay-2s">
+        <h2>Navsmart</h2>
+        <p>
+          Navsmart is a smart solution for modernizing DTC’s bus fleet management. It streamlines route planning, crew scheduling, and cost management using AI, GIS, and real-time traffic data. With features like a chatbot for booking and real-time updates, Navsmart enhances operational efficiency and commuter experience.
+        </p>
+      </q-card-section>
+
+      
+
+      <!-- Team Members Section -->
+
 
     </q-card>
   </q-page>
