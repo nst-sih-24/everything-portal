@@ -1,174 +1,188 @@
 <template>
   <q-page class="q-pa-md about-us-page">
-    <q-card flat bordered class="about-us-card">
-      <!-- Title Section -->
+    <q-card flat bordered class="about-us-card animate__animated animate__fadeIn">
+
       <q-card-section class="title-section">
-        <h1>About Us</h1>
+        <h1 class="animate__animated animate__zoomIn">About Byte Knight</h1>
       </q-card-section>
 
-      <!-- History Section -->
-      <q-card-section class="history-section">
-        <h2>History of DTC</h2>
+      <q-card-section class="vision-mission-section animate__animated animate__fadeInUp animate__delay-1s">
+        <h2>Vision & Mission</h2>
         <p>
-          Government of India, Ministry of Transport took over the local bus
-          services of Delhi in May 1948 in the name of Delhi Transport Service
-          when they found that the services offered by Gwalior and Northern
-          India Transport Company Ltd., the then licensee, were inadequate. A
-          Delhi Road Transport Authority was constituted under the Road
-          Transport Corporation Act, 1950. This Authority became an undertaking
-          of the Municipal Corporation of Delhi by an Act of Parliament in April
-          1958.
+          At Byte Knight, we envision a future where technology seamlessly integrates into every aspect of life, empowering individuals and organizations to achieve their goals. Our mission is to deliver innovative, user-centric solutions in web development, AI integration, and software engineering, ensuring excellence and scalability.
         </p>
+      </q-card-section>
+
+      <q-card-section class="history-section animate__animated animate__fadeInUp animate__delay-2s">
+        <h2>Our Journey</h2>
         <p>
-          On the recommendation of a Working Group of Planning Commission, which
-          concluded that Delhi Transport, as an extension of Municipal
-          Corporation of Delhi, had not been functioning efficiently and
-          adequately, resulting in leakage of revenue and very high operation
-          cost, Govt. of India took over the management of the undertaking by
-          passing the Delhi Road Transport Laws (Amendment) Act, in 1971. It
-          took over the assets and liabilities from the erstwhile Delhi
-          Transport Undertaking (DTU) operated by the Municipal Corporation of
-          Delhi till 2nd Nov, 1971. Thus the DTC was set up in 1971.
+          We are Byte Knightz, a passionate group of 5–6 tech enthusiasts dedicated to solving real-world challenges through innovative solutions. Our current mission is to build an automated scheduling and route management system for DTC (Delhi Transport Corporation).
+
+          Our solution is designed to streamline and optimize DTC's operations, enhancing efficiency, reducing costs, and improving commuter satisfaction. By leveraging technologies like Artificial Intelligence, GIS, and real-time traffic data, we aim to provide a comprehensive tool that simplifies route planning and crew scheduling.
+
+          Byte Knightz stands for collaboration, innovation, and excellence. With a shared vision of using technology to create meaningful impact, we strive to deliver solutions that set new standards in transportation management.
         </p>
-        <p>
-          In section 22 of the Road Transport Corporation Act, 1950, the
-          following objectives were laid down for the DTC:
-        </p>
+      </q-card-section>
+
+      <q-card-section class="services-section animate__animated animate__fadeInUp animate__delay-3s">
+        <h2>Services</h2>
         <q-list bordered>
           <q-item>
+            <q-item-section avatar>
+              <q-icon name="code" color="primary" size="2rem" />
+            </q-item-section>
             <q-item-section>
-              To provide or secure or promote an efficient, economical,
-              reliable, and properly coordinated system of road transport in
-              Union Territory of Delhi and any extended area.
+              <b>Web Development:</b> High-quality, responsive websites tailored to your needs.
             </q-item-section>
           </q-item>
           <q-item>
-            <q-item-section
-              >In doing so, it shall act on business principles.</q-item-section
-            >
-          </q-item>
-          <q-item>
-            <q-item-section
-              >To achieve a high level of operational
-              efficiency.</q-item-section
-            >
-          </q-item>
-          <q-item>
-            <q-item-section>
-              To charge fares not exceeding those prescribed by the State Under
-              Section 43(1)(i) of the Motor Vehicle Act, 1939.
+            <q-item-section avatar>
+              <q-icon name="ai" color="primary" size="2rem" />
             </q-item-section>
-          </q-item>
-          <q-item>
-            <q-item-section
-              >To attain financial self-sufficiency.</q-item-section
-            >
-          </q-item>
-          <q-item>
             <q-item-section>
-              DTC, which was functioning under the administrative control of
-              Govt. of India, was finally taken over by Govt. of NCT, Delhi on
-              05.08.1996.
+              <b>AI Integration:</b> Cutting-edge AI solutions for smarter decision-making.
             </q-item-section>
           </q-item>
         </q-list>
       </q-card-section>
 
-      <!-- Services Section -->
-      <q-card-section class="services-section">
-        <h2>Services</h2>
-        <p>
-          DTC has an extensive network of bus routes spread all over Delhi. A
-          few routes also go into the neighboring cities of Noida, Ghaziabad,
-          Gurgaon, and Faridabad. As of June 2023, of the 606 total bus routes
-          in Delhi, 259 were operated by DTC, 209 were operated by DIMTS, and
-          138 routes were operated by both authorities under the Department of
-          Transport's 'Unified Time Table'.
-        </p>
-        <p>
-          These routes are serviced by 7,135 buses, with 4,088 of them under
-          DTC, out of 37 depots and 3 ISBTs. The average number of trips in FY
-          2021-22 was 31,084 per day. The number of routes being operated by the
-          corporation has been steadily falling over the years under the Delhi
-          government's policy of a 50:50 ratio of DTC buses and cluster buses on
-          every route.
-        </p>
-        <p>
-          DTC also provides various other services like night services, tourist
-          services, and airport express services. It also provides buses to
-          Delhi Police and used to do so for some schools (however, this was
-          stopped in July 2022).
-        </p>
+      <!-- Team Members Section -->
+      <q-card-section class="team-section animate__animated animate__fadeInUp animate__delay-4s">
+        <h2>Our Team</h2>
+        <div class="team-grid">
+          <div class="team-member" v-for="member in teamMembers" :key="member.name">
+            <img :src="member.photo" :alt="member.name" class="team-photo" />
+            <h3>{{ member.name }}</h3>
+            <p>{{ member.role }}</p>
+          </div>
+        </div>
       </q-card-section>
 
-      <!-- Depots Section -->
-      <q-card-section class="depots-section">
-        <h2>Depots</h2>
-        <p>
-          DTC operates its buses from 37 bus depots categorized into 4 regions:
-          East, North, South & West. Each region is headed by a Regional
-          Manager, and each depot is headed by a Depot Manager. 36 of these
-          depots are located in Delhi, with 1 located in the neighboring city of
-          Noida. These facilities perform regular maintenance and cleaning of
-          buses. To complement DTC's existing depots, the Delhi government is
-          constructing 9 new bus depots at Kirari, East Vinod Nagar 2, Narela,
-          Daurala, Burari, Savda Ghevra, Kapashera, Gadaipur, and Chattarpur.
-        </p>
-      </q-card-section>
-
-      <!-- Fact Section -->
-      <q-card-section class="fact-section">
-        <h2>Fact</h2>
-        <p>
-          As of September 2023, DTC has a fleet of 4,088 buses, with 3,288 CNG
-          buses and 800 electric buses. This makes its fleet the largest CNG bus
-          fleet in the world and the largest electric bus fleet in India. The
-          buses are dispatched from 37 bus depots across Delhi. With Delhi
-          having a total of 7,135 buses, this means that 57% of these belong to
-          DTC.
-        </p>
-      </q-card-section>
     </q-card>
   </q-page>
 </template>
 
+<script>
+export default {
+  name: "AboutPage",
+  data() {
+    return {
+      teamMembers: [
+        {
+          name: "Arohi Jadhav",
+          role: "Frontend Developer",
+          photo: "src/assets/popular/WhatsApp Image 2024-11-29 at 21.08.17.jpeg",
+        },
+        {
+          name: "Roni Maity",
+          role: "Frontend Developer",
+          photo: "src/assets/popular/WhatsApp Image 2024-11-29 at 21.08.41.jpeg",
+        },
+        {
+          name: "Deeptanu",
+          role: "Frontend Developer",
+          photo: "src/assets/popular/WhatsApp Image 2024-11-29 at 21.08.30.jpeg",
+        },
+        {
+          name: "Oashe Mehta",
+          role: "App Developer",
+          photo: "src/assets/popular/WhatsApp Image 2024-11-29 at 21.11.12.jpeg",
+        },
+        {
+          name: "Yuvraj",
+          role: "Backend Developer",
+          photo: "src/assets/popular/WhatsApp Image 2024-11-29 at 21.08.59.jpeg",
+        },
+        {
+          name: "Sumit",
+          role: "Backend Developer",
+          photo: "src/assets/popular/WhatsApp Image 2024-11-29 at 21.09.45.jpeg",
+        },
+      ],
+    };
+  },
+};
+</script>
+
 <style scoped>
+@import "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css";
+
 .about-us-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Full-screen height */
-  background-color: #f4f4f4;
+  min-height: 100vh;
+  background-color: #f9f9f9;
 }
 
 .about-us-card {
   width: 100%;
-  max-width: 1800px;
+  max-width: 1200px;
   margin: 0 1rem;
   background: #ffffff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
 }
 
 .title-section h1 {
   text-align: center;
-  color: #388e3c;
+  color: #2d88ff;
   margin-bottom: 2rem;
+  font-size: 3.5rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 h2 {
   text-align: center;
-  color: #388e3c;
+  color: #f95e2a;
   margin-bottom: 1rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 p {
-  color: #333;
+  color: #555;
   line-height: 1.8;
   margin-bottom: 1.5rem;
   text-align: justify;
+  font-size: 1.2rem;
 }
 
-q-list {
-  margin-top: 1rem;
+.team-section {
+  margin-top: 2rem;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.team-member {
+  text-align: center;
+}
+
+.team-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+.team-member h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.team-member p {
+  font-size: 1rem;
+  color: #777;
 }
 </style>

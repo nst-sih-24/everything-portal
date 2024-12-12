@@ -22,6 +22,9 @@
 
           <!-- <img  alt="Logo" style="height: 50px;"/> -->
         </q-toolbar-title>
+        <q-btn flat stretch color="primary" icon="home" />
+        <q-btn flat stretch color="primary" label="AboutUs" />
+        <q-btn flat stretch color="primary" label="ContactUs" />
 
         <q-btn flat stretch color="primary" label="हिन्दी" to="/hi" />
         <q-btn flat stretch color="primary" label="English" to="/" />

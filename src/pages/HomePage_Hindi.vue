@@ -1,5 +1,6 @@
 <template>
   <q-page class="q-pa-none">
+    <!-- Hero Image Section -->
     <div class="hero-image">
       <div
         class="image"
@@ -8,8 +9,10 @@
         :style="{ backgroundImage: 'url(' + image + ')' }"
       ></div>
     </div>
+
+    <!-- Search Section -->
     <div class="search-container">
-      <q-card>
+      <q-card class="search-card">
         <q-item>
           <q-item-section>
             <q-input outlined dense v-model="source" placeholder="स्रोत" />
@@ -34,14 +37,15 @@
         </q-item>
       </q-card>
     </div>
-    <!-- Popular Destination Section with 4 Divs -->
+
+    <!-- Popular Destination Section -->
     <div class="popular-destinations q-pa-md" style="min-height: 250px">
       <span class="text-white" v-scroll-fire="bounceImage">trigger</span>
       <div class="row q-col-gutter-md" v-if="showItems">
         <div
           v-for="(item, index) in destinationItems"
           :key="index"
-          class="col-3 destination-item"
+          class="col-12 col-sm-6 col-md-4 col-lg-3 destination-item"
           ref="destinationDivs"
           :class="{
             'fade-up': index % 2 == 0,
