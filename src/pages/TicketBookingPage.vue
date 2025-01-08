@@ -99,6 +99,7 @@
             @click="payNow"
             :disabled="!canSubmit"
             style="width: 150px; font-size: 16px; background-color: #00796b; border-radius: 5px;"
+            outlined dense to="paymentgateway"
           />
         </q-card-actions>
       </q-card>

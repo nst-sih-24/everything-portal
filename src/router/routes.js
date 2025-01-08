@@ -16,13 +16,13 @@ const routes = [
         component: () => import("src/pages/TicketBookingPage.vue"),
       },
       {
-        path: "/ticket/payment/gateway",
+        path: "ticket/paymentgateway",
         component: () => import("src/pages/PaymentGatewayPage.vue"),
       },
-      {
-        path: "ticket/payment",
-        component: () => import("pages/PaymentPage.vue"),
-      },
+      // {
+      //   path: "ticket/payment",
+      //   component: () => import("src/pages/PaymentPage.vue"),
+      // },
     ],
   },
   {

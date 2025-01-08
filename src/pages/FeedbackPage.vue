@@ -2,17 +2,12 @@
   <q-page class="q-pa-md">
     <div class="container">
       <!-- Feedbacks Section -->
-      <pre style="text-align: left">{{ feedbacks }}</pre>
-      <ul>
-        <li v-for="feedback in feedbacks" :key="feedback.id">
-          {{ feedback.suggestion }}
-        </li>
-      </ul>
+      <!-- <pre style="text-align: left">{{ feedbacks }}</pre> -->
+
 
       <!-- Header Section -->
       <div class="header">
         <div class="logo-placeholder">
-          <h2>LOGO PLACEHOLDER</h2>
         </div>
         <h1>HELP US GET BETTER</h1>
         <p class="intro">Have some suggestions? Share with us your thoughts!</p>
@@ -149,7 +144,7 @@
 import { createClient } from "@supabase/supabase-js";
 
 const supabaseUrl = "https://codnrccajpjpchleelag.supabase.co";
-const supabaseKey = "YOUR_SUPABASE_KEY";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvZG5yY2NhanBqcGNobGVlbGFnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzIxODM3MTYsImV4cCI6MjA0Nzc1OTcxNn0.Ymu1E_rzARqGolgHNxWiDmF2lchesA9Prngjk6lya6Y";
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default {
